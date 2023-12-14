@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "question": "Where do you eat your cream egg?",
+        "options": ["PRIVATE", "or", "PUBLIC"],
+        "layout": "egg_shape",
+        "image": "",
+        "multi_select": false
+    },
+    {
+        "id": 2,
+        "question": "What do you see?",
+        "options": ["1. A man riding a horse. He’s eating a creme egg.", "2. A woman holding a creme egg. She’s crying. Tears of joy.", "3. HUH????"],
+        "layout": "single_column",
+        "image": "",
+        "multi_select": false
+    },
+    {
+        "id": 3,
+        "question": "How do you eat yours?",
+        "options": ["All in one go", "In two bites", "With a teaspoon", "Scoop the goo out with your finger", "Suck out the goo like an oyster", "Save half for later", "Like an apple", "Melted on toast"],
+        "layout": "two_column",
+        "image": "",
+        "multi_select": true
+    },
+    {
+        "id": 4,
+        "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP. YOU AND YOUR FRIEND REALLY WANT IT. WHAT DO YOU DO?",
+        "options": ["Toss a coin for it.", "Give it to your friend. You know how much they want it.", "Have it yourself. You deserve it."],
+        "layout": "three_column",
+        "image": "",
+        "multi_select": false
+    },
+    {
+        "id": 5,
+        "question": "How do you feel about this?",
+        "options": ["1. What on earth are they doing?", "2. Each to their own :)"],
+        "layout": "single_column",
+        "image": "",
+        "multi_select": false
+    }
+]

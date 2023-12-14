@@ -20,6 +20,7 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
+
     @include respond-to("tablet") {
         background-image: url('../images/BGLandingEggRepeatDesktop.svg');
     }
@@ -33,6 +34,7 @@
 .cadburyCreamLogoImage {
     width: 85px;
     margin-top: 30px;
+
     @include respond-to("tablet") {
         width: 125px;
         margin-top: 60px;
@@ -42,6 +44,7 @@
 .cadburyTornImage {
     width: 90%;
     margin-top: 20px;
+
     @include respond-to("mobile") {
         width: 360px;
     }
@@ -54,15 +57,18 @@
 
 h1 {
     max-width: 90%;
+
     @include respond-to("mobile") {
         max-width: 280px;
     }
+
     @include respond-to("tablet") {
         max-width: 100%;
     }
 
     br {
         display: none;
+
         @include respond-to("tablet") {
             display: block
         }
@@ -71,9 +77,11 @@ h1 {
 
 h2 {
     max-width: 90%;
+
     @include respond-to("mobile") {
         max-width: 200px;
-    }    
+    }
+
     @include respond-to("tablet") {
         max-width: 100%;
     }
@@ -86,9 +94,11 @@ h2 {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         padding: 0.6em 1.2em;
         margin-bottom: 50px;
+
         @include respond-to("mobile") {
             width: 240px;
         }
+
         @include respond-to("tablet") {
             width: 320px;
         }
@@ -103,7 +113,7 @@ h2 {
     height: 100%;
     z-index: 800;
     overflow: hidden;
-    pointer-events: none;
+    // pointer-events: none;
 
     .quiz-main__bg {
         position: absolute;
@@ -115,5 +125,200 @@ h2 {
         border-top-right-radius: 50%;
         background-color: $purple;
         transition: background-color 400ms;
+    }
+
+    .quiz-bottom_bg {
+        position: absolute;
+        left: -10px;
+        bottom: -10px;
+    }
+
+    .quiz-top_bg {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+    }
+
+    .quiz-main__items {
+        height: 100%;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 0;
+        left: 0;
+        max-width: 1440px;
+        margin: 0 auto;
+        
+        .que-container {
+            max-width: 450px;
+            height: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // justify-content: center;
+        }
+
+        .queHeading {
+            font-size: 2.5rem;
+            margin: 1rem 0rem;
+            position: absolute;
+            top: 160px;
+            @include respond-to("tablet") {
+                font-size: 5rem;
+            }
+        }
+
+        .que {
+            font-size: 2rem;
+            margin: 1rem 0rem;
+            position: absolute;
+            top: 200px;
+            @include respond-to("tablet") {
+                font-size: 3.5rem;
+            }
+        }
+
+        .ansMain {
+            position: absolute;
+            top: 260px;
+            margin: 1rem;
+            .ansWrapper {
+                display: flex;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .ans {
+                position: relative;
+                cursor: pointer;
+                font-size: 1.75rem;
+                align-items: center;
+                color: $purple;
+                text-transform: lowercase;
+                @include respond-to("tablet") {
+                    font-size: 2rem;
+                }
+                .egg-shape {
+                    width: 70px;
+                    height: 70px;
+                    background: $white;
+
+                    &.left {
+                        width: 128px;
+                        height: 105px;
+                        transform: rotate(-140deg);
+                        border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+                    }
+
+                    &.right {
+                        width: 128px;
+                        height: 98px;
+                        transform: rotate(-18deg);
+                        border-radius: 50% 55% 86% 42%/66% 49% 80% 52%;
+                    }
+                }
+
+                &.selected {
+                    .egg-shape {
+                        background: $yellow;
+                    }
+                }
+            }
+
+            .egg_shape{
+                .ans {
+                    .ansText {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: center;
+                        bottom: 0;
+                        font-size: 2rem;
+                        align-items: center;
+                        color: $purple
+                    }
+                }
+            }
+
+            .single_column {
+                flex-direction: column;
+                min-width: 300px;
+
+                .ans {
+                    width: 100%;
+                    background: $white;
+                    padding: 1rem 2rem;
+                    margin-bottom: 0.85rem;
+                    border-radius: 7px;
+
+                    &.selected {
+                        background: $yellow;
+                    }
+                }
+            }
+
+            .two_column {
+                min-width: 300px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                align-items: stretch;
+                .ans {
+                    width: 100%;
+                    background: $white;
+                    padding: 1rem 2rem;
+                    margin-bottom: 0.85rem;
+                    border-radius: 7px;
+                    max-width: 46%;
+                    box-sizing: border-box;
+                    margin: 0.35rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.selected {
+                        background: $yellow;
+                    }
+                }
+            }
+
+            .three_column {
+                min-width: 300px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                align-items: stretch;
+                .ans {
+                    width: 100%;
+                    background: $white;
+                    padding: 1rem 2rem;
+                    margin-bottom: 0.85rem;
+                    border-radius: 7px;
+                    max-width: 29%;
+                    box-sizing: border-box;
+                    margin: 0.35rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.selected {
+                        background: $yellow;
+                    }
+                }
+            }
+
+            .or {
+                margin: 1rem;
+                color: $white;
+            }
+        }
+    }
+}
+
+.queIsOpen {
+    .quiz-main {
+        pointer-events: all;
     }
 }
