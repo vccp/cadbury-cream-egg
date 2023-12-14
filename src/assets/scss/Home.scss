@@ -44,8 +44,9 @@
 .questionImage {
     width: 90%;
     border-radius: 10px;
+
     @include respond-to("mobile") {
-        width: 200px;
+        width: 350px;
     }
 }
 
@@ -114,13 +115,14 @@ h2 {
 }
 
 .quiz-main {
-   position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 800;
     overflow: hidden;
+    min-height: 100vh;
     // pointer-events: none;
 
     .quiz-main__bg {
@@ -159,7 +161,7 @@ h2 {
         left: 0;
         max-width: 1440px;
         margin: 0 auto;
-        
+
         .que-container {
             max-width: 1440px;
             height: 100%;
@@ -176,6 +178,7 @@ h2 {
             position: relative;
             top: 0;
             left: auto;
+
             @include respond-to("tablet") {
                 font-size: 5rem;
             }
@@ -186,6 +189,7 @@ h2 {
             margin: 1rem 0rem;
             position: relative;
             top: 0;
+
             @include respond-to("tablet") {
                 font-size: 3.5rem;
             }
@@ -195,6 +199,7 @@ h2 {
             position: relative;
             top: 0;
             margin: 1rem;
+
             .ansWrapper {
                 display: flex;
                 align-items: center;
@@ -207,9 +212,11 @@ h2 {
                 font-size: 1.75rem;
                 align-items: center;
                 color: $purple;
+
                 @include respond-to("tablet") {
                     font-size: 2rem;
                 }
+
                 .egg-shape {
                     width: 70px;
                     height: 70px;
@@ -237,9 +244,10 @@ h2 {
                 }
             }
 
-            .egg_shape{
+            .egg_shape {
                 .ans {
                     font-family: "canada-type-gibson", sans-serif;
+
                     .ansText {
                         position: absolute;
                         top: 0;
@@ -251,7 +259,7 @@ h2 {
                         font-size: 2rem;
                         align-items: center;
                         color: $purple;
-                         font-family: "canada-type-gibson", sans-serif;
+                        font-family: "canada-type-gibson", sans-serif;
                     }
                 }
             }
@@ -279,6 +287,7 @@ h2 {
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 align-items: stretch;
+
                 .ans {
                     width: 100%;
                     background: $white;
@@ -292,6 +301,7 @@ h2 {
                     justify-content: center;
                     align-items: center;
                     font-family: "canada-type-gibson", sans-serif;
+
                     &.selected {
                         background: $yellow;
                     }
@@ -303,6 +313,7 @@ h2 {
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 align-items: stretch;
+
                 .ans {
                     width: 100%;
                     background: $white;

@@ -38,6 +38,7 @@ const Home: React.FC = () => {
     const quizCreamLogoRef = useRef<HTMLDivElement | null>(null);
     const quizMainQueHeadingRef = useRef<HTMLDivElement | null>(null);
     const quizMainQueRef = useRef<HTMLDivElement | null>(null);
+    const questionImageRef = useRef<HTMLDivElement | null>(null);
     const quizMainAnsRef = useRef<HTMLDivElement | null>(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Answer[]>([]);
@@ -48,7 +49,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('../public/quiz.json');
+                const response = await fetch('../quiz.json');
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch JSON: ${response.statusText}`);
@@ -99,7 +100,18 @@ const Home: React.FC = () => {
                 // .from(quizMainQueHeadingRef.current, { x:-50, y:-50, opacity: 0, left:"50%", top:"50%", duration: 0.1, ease: 'power2.inOut' })
                 .from(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8, ease: 'power2.inOut' })
                 .from(quizMainQueRef.current, { opacity: 0, scale: 0.1, top: "30%", duration: 0.8, ease: 'power2.inOut' })
-                .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' })
+                .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' });
+            const questionImageEle = questionImageRef?.current;
+            const childNodes = questionImageEle?.childNodes
+            let hasImageChild = false;
+            if (childNodes?.length) {
+                hasImageChild = Array.from(childNodes).some(node => node.nodeName === 'IMG')
+            }
+            if (hasImageChild) {
+                tl.current
+                    .from(questionImageEle, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' });
+            }
+            tl.current
                 .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' })
                 .from('.quiz-top_bg svg', { x: '120%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
                 .from('.quiz-bottom_bg svg', { x: '-120%', y: '50%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
@@ -111,14 +123,19 @@ const Home: React.FC = () => {
                     ease: "power2.out"
                 }, 'openQuiz')
                 .to(quizMainQueRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
-                .to(quizCreamLogoRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
+                .to(quizCreamLogoRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
+            if (hasImageChild) {
+                tl.current
+                    .to(questionImageEle, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
+            }
+            tl.current
                 .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
                 .to('.quiz-top_bg svg', { x: '100%', rotation: 20, duration: 1, ease: "power4.in" }, "openQuiz+=0.35")
                 .to('.quiz-bottom_bg svg', { x: '-100%', y: '50%', rotation: -20, duration: 1, ease: "power4.in" }, "openMenu+=0.40")
         }, app.current as Element | undefined);
         tl.current.tweenFromTo(0, "openQuiz");
         return () => ctx.revert();
-    }, []);
+    }, [questionImageRef?.current]);
 
     const handleAnswer = (selectedAnswer: string) => {
         const existingAnswer = answers.find((a) => a.questionId === currentQuestion);
@@ -183,14 +200,14 @@ const Home: React.FC = () => {
                             <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                         </div>
                         <div ref={quizMainQueHeadingRef} className="queHeading text-yellow">QUESTION {queId}</div>
-                        <div ref={quizMainQueRef} className="que text-white">{question?.question}</div>
-                        {question?.image &&
-                            <div ref={quizMainAnsRef}>
-                                <img className="questionImage" 
-                                src={new URL(question?.image, import.meta.url).href} 
-                                alt="" />
-                            </div>
-                        }
+                        <div ref={quizMainQueRef} className="que text-white" dangerouslySetInnerHTML={{ __html: question?.question || '' }} />
+                        <div ref={questionImageRef}>
+                            {question?.image &&
+                                <img className="questionImage"
+                                    src={new URL(question?.image, import.meta.url).href}
+                                    alt="" />
+                            }
+                        </div>
                         <div ref={quizMainAnsRef} className="ansMain">
                             {question &&
                                 <div className={`ansWrapper ${question.layout}`}>
@@ -217,7 +234,7 @@ const Home: React.FC = () => {
                                                                 }`}
                                                         ></div>
                                                     )}
-                                                    <span className='ansText'>{choice}</span>
+                                                    <span className='ansText' dangerouslySetInnerHTML={{ __html: choice }} />
                                                 </div>
 
                                             }
