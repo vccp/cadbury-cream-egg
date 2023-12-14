@@ -48,7 +48,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('../quiz.json');
+                const response = await fetch('../public/quiz.json');
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch JSON: ${response.statusText}`);
