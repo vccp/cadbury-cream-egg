@@ -1,7 +1,7 @@
 {
   "name": "vite-quiz",
   "private": true,
-  "homepage": "http://localhost:5173/",
+  "homepage": "https://cadburycreamegg-dev.azurewebsites.net/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

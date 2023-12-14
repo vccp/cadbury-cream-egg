@@ -18,7 +18,7 @@ interface QuizItem {
 
 interface Answer {
     questionId: number;
-    answer: string;
+    answer: string | string[] | null;
 }
 
 const timeline = gsap.timeline({
@@ -97,17 +97,17 @@ const Home: React.FC = () => {
                 // i.e., selects matching children only
                 .to(quizMainBgRef.current, { bottom: 0, duration: 0.8, ease: 'power2.inOut' })
                 // .from(quizMainQueHeadingRef.current, { x:-50, y:-50, opacity: 0, left:"50%", top:"50%", duration: 0.1, ease: 'power2.inOut' })
-                .from(quizMainQueHeadingRef.current, { opacity: 0, x: '-50%', y: '-50%', left: "50%", top: "50%", duration: 0.8, ease: 'power2.inOut' })
-                .from(quizMainQueRef.current, { opacity: 0, x: '-50%', y: '-50%', scale: 0.1, left: "50%", top: "50%", duration: 0.8, ease: 'power2.inOut' })
+                .from(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8, ease: 'power2.inOut' })
+                .from(quizMainQueRef.current, { opacity: 0, scale: 0.1, top: "30%", duration: 0.8, ease: 'power2.inOut' })
                 .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' })
-                .from(quizMainAnsRef.current, { opacity: 0, x: '-50%', y: '-50%', scale: 0.1, left: "50%", top: "50%", duration: 0.8, ease: 'power2.inOut' })
-                .from('.quiz-top_bg svg', { x: '120%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 0.5)
-                .from('.quiz-bottom_bg svg', { x: '-120%', y: '50%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 0.55)
+                .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' })
+                .from('.quiz-top_bg svg', { x: '120%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
+                .from('.quiz-bottom_bg svg', { x: '-120%', y: '50%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
                 .addLabel("openQuiz")
                 .to(quizMainQueHeadingRef.current, {
                     duration: 1,
                     // y: 0,
-                    top: "22%",
+                    top: 0,
                     ease: "power2.out"
                 }, 'openQuiz')
                 .to(quizMainQueRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
@@ -120,42 +120,34 @@ const Home: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
-    // const handleNextQuestion = () => {
-    //     if (selectedOption !== null) {
-
-    //       setUserAnswers((prevAnswers) => [
-    //         ...prevAnswers,
-    //         { question: quizData[currentQuestionIndex].question, selectedAnswer: selectedOption },
-    //       ]);
-
-    //       setSelectedOption(null);
-    //       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-
-    //       if (scroll) {
-    //         const nextQuestionElement = document.getElementById(`question-${currentQuestionIndex + 1}`);
-    //         if (nextQuestionElement) {
-    //           scroll.scrollTo(nextQuestionElement);
-    //         } else {
-    //           const resultEle = document.getElementById('result');
-    //           console.log(resultEle);
-    //           scroll.scrollTo(resultEle);
-    //         }
-    //       }
-    //     }
-    //   };
-
-    // const handleTakeQuizClick = () => {
-    //     if (isQueOpen === false) {
-    //         navigate("/question/1");
-    //         // timeline.tweenFromTo(0, "openQuiz");
-    //         // timeline.restart();
-    //         setIsQue(true);
-    //     }
-    // };
-
     const handleAnswer = (selectedAnswer: string) => {
-        const updatedAnswers = answers.filter((a) => a.questionId !== currentQuestion);
-        setAnswers([...updatedAnswers, { questionId: currentQuestion, answer: selectedAnswer }]);
+        const existingAnswer = answers.find((a) => a.questionId === currentQuestion);
+        const isMultiSelect = question?.multi_select || false;
+
+        if (existingAnswer) {
+            const updatedAnswers = answers.map((a) =>
+                a.questionId === currentQuestion
+                    ? {
+                        ...a,
+                        answer: isMultiSelect
+                            ? (a.answer as string[]).includes(selectedAnswer)
+                                ? (a.answer as string[]).filter((ans) => ans !== selectedAnswer)
+                                : [...(a.answer as string[]), selectedAnswer]
+                            : selectedAnswer,
+                    }
+                    : a
+            );
+
+            setAnswers(updatedAnswers.filter((a) => isMultiSelect || a.answer !== null));
+        } else {
+            setAnswers([
+                ...answers,
+                {
+                    questionId: currentQuestion,
+                    answer: isMultiSelect ? [selectedAnswer] : selectedAnswer,
+                },
+            ]);
+        }
     };
 
     const handleNext = () => {
@@ -192,34 +184,53 @@ const Home: React.FC = () => {
                         </div>
                         <div ref={quizMainQueHeadingRef} className="queHeading text-yellow">QUESTION {queId}</div>
                         <div ref={quizMainQueRef} className="que text-white">{question?.question}</div>
-
-                            <div ref={quizMainAnsRef} className="ansMain">
-                        {question &&
+                        {question?.image &&
+                            <div ref={quizMainAnsRef}>
+                                <img className="questionImage" 
+                                src={new URL(question?.image, import.meta.url).href} 
+                                alt="" />
+                            </div>
+                        }
+                        <div ref={quizMainAnsRef} className="ansMain">
+                            {question &&
                                 <div className={`ansWrapper ${question.layout}`}>
                                     {question.options.map((choice, index) => (
                                         <React.Fragment key={index}>
                                             {choice === 'or' && <span className='or'>OR</span>}
                                             {choice !== 'or' &&
                                                 <div
-                                                    className={`ans ${answers.find((a) => a.questionId === currentQuestion && a.answer === choice) ? 'selected' : ''}`}
+                                                    className={`ans ${answers.some(
+                                                        (a) =>
+                                                            a.questionId === currentQuestion &&
+                                                            (question.multi_select
+                                                                ? (a.answer as string[]).includes(choice)
+                                                                : a.answer === choice)
+                                                    )
+                                                        ? 'selected'
+                                                        : ''
+                                                        }`}
                                                     onClick={() => handleAnswer(choice)}
                                                 >
-                                                    {question.layout === "egg_shape" &&
-                                                        <div className={`ans-option egg-shape ${index === 0 ? 'left' : 'right'}`}></div>
-                                                    }
+                                                    {question.layout === 'egg_shape' && (
+                                                        <div
+                                                            className={`ans-option egg-shape ${index === 0 ? 'left' : 'right'
+                                                                }`}
+                                                        ></div>
+                                                    )}
                                                     <span className='ansText'>{choice}</span>
                                                 </div>
+
                                             }
                                         </React.Fragment>
                                     ))}
                                 </div>
-                                }
-                                {answers.some((a) => a.questionId === currentQuestion) &&
-                                    <button className='btn primary' onClick={handleNext}>
-                                        Next
-                                    </button>
-                                }
-                            </div>
+                            }
+                            {answers.some((a) => a.questionId === currentQuestion) &&
+                                <button className='btn primary' onClick={handleNext}>
+                                    Next
+                                </button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
