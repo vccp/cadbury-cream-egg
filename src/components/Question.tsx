@@ -2,8 +2,26 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import '../assets/scss/Home.scss'
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
+
 import BGQ1WavebottomDesktop from "../assets/images/BGQ1WavebottomDesktop.svg?react";
 import BGQ1WavetopDesktop from "../assets/images/BGQ1WavetopDesktop.svg?react";
+
+import BGQ2WaveBottomDesktop from "../assets/images/BGQ2WaveBottomDesktop.svg?react";
+// import BGQ2WaveBottomMobile from "../assets/images/BGQ2WaveBottomMobile.svg?react";
+import BGQ2WaveTopDesktop from "../assets/images/BGQ2WaveTopDesktop.svg?react";
+// import BGQ2WaveTopMobile from "../assets/images/BGQ2WaveTopMobile.svg?react";
+
+import BGQ3DotsBottomDesktop from "../assets/images/BGQ3DotsBottomDesktop.svg?react";
+// import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
+import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
+// import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
+
+import BGQ4EggRepeatDesktop from "../assets/images/BGQ4EggRepeatDesktop.svg?react";
+// import BGQ4EggRepeatMobile from "../assets/images/BGQ4EggRepeatMobile.svg?react";
+
+import BGQ5FullWaveDesktop from "../assets/images/BGQ5FullWaveDesktop.svg?react";
+// import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
+
 import { useNavigate, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
@@ -33,8 +51,8 @@ const Home: React.FC = () => {
     const tl = useRef(timeline);
     const app = useRef<HTMLDivElement>(null);
     const quizMainBgRef = useRef<HTMLDivElement | null>(null);
-    const quizBottomBgRef = useRef<HTMLDivElement | null>(null);
-    const quizTopBgRef = useRef<HTMLDivElement | null>(null);
+    // const quizBottomBgRef = useRef<HTMLDivElement | null>(null);
+    // const quizTopBgRef = useRef<HTMLDivElement | null>(null);
     const quizCreamLogoRef = useRef<HTMLDivElement | null>(null);
     const quizMainQueHeadingRef = useRef<HTMLDivElement | null>(null);
     const quizMainQueRef = useRef<HTMLDivElement | null>(null);
@@ -77,6 +95,7 @@ const Home: React.FC = () => {
     }, []);
 
     useEffect(() => {
+        console.log(queId);
         if (queId) {
             const parsedQueId = parseInt(queId, 10);
             if (!isNaN(parsedQueId)) {
@@ -88,54 +107,71 @@ const Home: React.FC = () => {
         } else {
             setQuestion(quizData[0]);
         }
-        // tl.current.tweenFromTo(0, "openQuiz");
+        // tl.current.restart();
     }, [queId]);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
+        console.log(queId);
         const ctx = gsap.context(() => {
             tl.current
                 // use scoped selectors
                 // i.e., selects matching children only
                 .to(quizMainBgRef.current, { bottom: 0, duration: 0.8, ease: 'power2.inOut' })
                 // .from(quizMainQueHeadingRef.current, { x:-50, y:-50, opacity: 0, left:"50%", top:"50%", duration: 0.1, ease: 'power2.inOut' })
-                .from(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8, ease: 'power2.inOut' })
-                .from(quizMainQueRef.current, { opacity: 0, scale: 0.1, top: "30%", duration: 0.8, ease: 'power2.inOut' })
+                .fromTo(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
+                .fromTo(quizMainQueRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
                 .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' });
             const questionImageEle = questionImageRef?.current;
-            const childNodes = questionImageEle?.childNodes
-            let hasImageChild = false;
-            if (childNodes?.length) {
-                hasImageChild = Array.from(childNodes).some(node => node.nodeName === 'IMG')
-            }
-            if (hasImageChild) {
+            if (questionImageEle) {
                 tl.current
                     .from(questionImageEle, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' });
             }
             tl.current
-                .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' })
-                .from('.quiz-top_bg svg', { x: '120%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
-                .from('.quiz-bottom_bg svg', { x: '-120%', y: '50%', rotation: -20, duration: 2, ease: "elastic.out(1, 0.8)" }, 1.5)
+                .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' });
+            console.log('queId', queId);
+            if (queId === "1" || queId === "2") {
+                tl.current
+                    .from('.quiz-top-right_bg svg', { opacity: 0, x: '120%', rotation: -20, duration: 2, ease: "power2.inOut" }, 1.5)
+                    .from('.quiz-bottom-left_bg svg', { opacity: 0, x: '-120%', y: '50%', rotation: -20, duration: 2, ease: "power2.inOut" }, 1.5);
+            }
+            if (queId === "3") {
+                tl.current
+                    .from('.quiz-top-left_bg svg', { opacity: 0, x: '-120%', rotation: -20, duration: 2, ease: "power2.inOut" }, 1.5)
+                    .from('.quiz-bottom_bg svg', { opacity: 0, y: '50%', rotation: -20, duration: 2, ease: "power2.inOut" }, 1.5);
+            }
+            if (queId === "4") {
+                tl.current
+                    .from('.quiz-egg-repeat_bg svg', { opacity: 0, scale: 1.5, rotation: -20, duration: 1, ease: "power2.inOut" }, 1.5);
+            }
+            if (queId === "5") {
+                tl.current
+                    .from('.quiz-full-wave_bg svg', { opacity: 0, scale: 1.5, rotation: -20, duration: 1, ease: "power2.inOut" }, 1.5);
+            }
+
+            tl.current
                 .addLabel("openQuiz")
-                .to(quizMainQueHeadingRef.current, {
-                    duration: 1,
-                    // y: 0,
-                    top: 0,
-                    ease: "power2.out"
-                }, 'openQuiz')
+                // .to(quizMainQueHeadingRef.current, {
+                //     duration: 1,
+                //     // y: 0,
+                //     top: 0,
+                //     ease: "power2.out"
+                // }, 'openQuiz')
                 .to(quizMainQueRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
                 .to(quizCreamLogoRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
-            if (hasImageChild) {
+            if (questionImageEle) {
                 tl.current
                     .to(questionImageEle, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
             }
             tl.current
-                .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
-                .to('.quiz-top_bg svg', { x: '100%', rotation: 20, duration: 1, ease: "power4.in" }, "openQuiz+=0.35")
-                .to('.quiz-bottom_bg svg', { x: '-100%', y: '50%', rotation: -20, duration: 1, ease: "power4.in" }, "openMenu+=0.40")
+                .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
+            // tl.current
+            //     .to('.quiz-top_bg svg', { x: '100%', rotation: 20, duration: 1, ease: "power4.in" }, "openQuiz+=0.35")
+            //     .to('.quiz-bottom_bg svg', { x: '-100%', y: '50%', rotation: -20, duration: 1, ease: "power4.in" }, "openMenu+=0.40");
         }, app.current as Element | undefined);
-        tl.current.tweenFromTo(0, "openQuiz");
+        // tl.current.tweenFromTo(0, "openQuiz");
+        tl.current.restart();
         return () => ctx.revert();
-    }, [questionImageRef?.current]);
+    }, [queId]);
 
     const handleAnswer = (selectedAnswer: string) => {
         const existingAnswer = answers.find((a) => a.questionId === currentQuestion);
@@ -188,12 +224,50 @@ const Home: React.FC = () => {
         <div ref={app} >
             <div className='quiz-main'>
                 <div ref={quizMainBgRef} className="quiz-main__bg"></div>
-                <div ref={quizBottomBgRef} className="quiz-bottom_bg">
-                    <BGQ1WavebottomDesktop />
-                </div>
-                <div ref={quizTopBgRef} className="quiz-top_bg">
-                    <BGQ1WavetopDesktop />
-                </div>
+                {queId === "1" &&
+                    <>
+                        <div className="quiz-bottom-left_bg">
+                            <BGQ1WavebottomDesktop />
+                        </div>
+                        <div className="quiz-top-right_bg">
+                            <BGQ1WavetopDesktop />
+                        </div>
+                    </>
+                }
+                {queId === "2" &&
+                    <>
+                        <div className="quiz-bottom-left_bg">
+                            <BGQ2WaveBottomDesktop />
+                        </div>
+                        <div className="quiz-top-right_bg">
+                            <BGQ2WaveTopDesktop />
+                        </div>
+                    </>
+                }
+                {queId === "3" &&
+                    <>
+                        <div className="quiz-bottom_bg">
+                            <BGQ3DotsBottomDesktop />
+                        </div>
+                        <div className="quiz-top-left_bg">
+                            <BGQ3DotsTopDesktop />
+                        </div>
+                    </>
+                }
+                {queId === "4" &&
+                    <>
+                        <div className="quiz-egg-repeat_bg">
+                            <BGQ4EggRepeatDesktop />
+                        </div>
+                    </>
+                }
+                {queId === "5" &&
+                    <>
+                        <div className="quiz-full-wave_bg">
+                            <BGQ5FullWaveDesktop />
+                        </div>
+                    </>
+                }
                 <div className="quiz-main__items">
                     <div className="que-container">
                         <div ref={quizCreamLogoRef}>

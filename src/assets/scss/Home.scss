@@ -136,17 +136,47 @@ h2 {
         background-color: $purple;
         transition: background-color 400ms;
     }
-
+    
+    .quiz-top_bg {
+        position: absolute;
+        top: -10px;
+    }
     .quiz-bottom_bg {
+        position: absolute;
+        bottom: -10px;
+        width: 100%;
+        svg{
+            width: 100%;
+        }
+    }
+    .quiz-bottom-left_bg {
         position: absolute;
         left: -10px;
         bottom: -10px;
     }
-
-    .quiz-top_bg {
+    .quiz-top-right_bg{
         position: absolute;
-        right: -10px;
         top: -10px;
+        right: -10px;
+    }
+    .quiz-top-left_bg{
+        position: absolute;
+        top: -10px;
+        left: -10px;
+    }
+    .quiz-egg-repeat_bg{
+        position: absolute;
+        width: 100%;
+        svg{
+            width: 100%;
+        }
+    }
+    .quiz-full-wave_bg{
+        position: absolute;
+        width: 100%;
+        svg{
+            width: 100%;
+        }
     }
 
     .quiz-main__items {
@@ -178,6 +208,7 @@ h2 {
             position: relative;
             top: 0;
             left: auto;
+            opacity: 1;
 
             @include respond-to("tablet") {
                 font-size: 5rem;
@@ -223,15 +254,15 @@ h2 {
                     background: $white;
 
                     &.left {
-                        width: 128px;
-                        height: 105px;
+                        width: 228px;
+                        height: 205px;
                         transform: rotate(-140deg);
                         border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
                     }
 
                     &.right {
-                        width: 128px;
-                        height: 98px;
+                        width: 228px;
+                        height: 198px;
                         transform: rotate(-18deg);
                         border-radius: 50% 55% 86% 42%/66% 49% 80% 52%;
                     }
@@ -246,7 +277,7 @@ h2 {
 
             .egg_shape {
                 .ans {
-                    font-family: "canada-type-gibson", sans-serif;
+                    font-family: 'CremeEgg-CondensedBlack';
 
                     .ansText {
                         position: absolute;
@@ -256,10 +287,13 @@ h2 {
                         display: flex;
                         justify-content: center;
                         bottom: 0;
-                        font-size: 2rem;
+                        font-size: 1.5rem;
                         align-items: center;
                         color: $purple;
-                        font-family: "canada-type-gibson", sans-serif;
+                        font-family: 'CremeEgg-CondensedBlack';
+                        @include respond-to("tablet") {
+                            font-size: 3.5rem
+                        }
                     }
                 }
             }

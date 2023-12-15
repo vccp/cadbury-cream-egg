@@ -21,21 +21,9 @@ function App() {
   const containerRef = useRef(null)
 
   return (
-    // <LocomotiveScrollProvider
-    //   options={
-    //     {
-    //       smooth: true
-    //     }
-    //   }
-    //   watch={
-    //     []
-    //   }
-    //   containerRef={containerRef}
-    // >
       <main data-scroll-container ref={containerRef} className="main">
         <RouterProvider router={router} />
       </main>
-    // </LocomotiveScrollProvider>
   )
 }
 
