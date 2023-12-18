@@ -95,7 +95,6 @@ const Home: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        console.log(queId);
         if (queId) {
             const parsedQueId = parseInt(queId, 10);
             if (!isNaN(parsedQueId)) {
@@ -107,17 +106,12 @@ const Home: React.FC = () => {
         } else {
             setQuestion(quizData[0]);
         }
-        // tl.current.restart();
     }, [queId]);
 
     useEffect(() => {
-        console.log(queId);
         const ctx = gsap.context(() => {
             tl.current
-                // use scoped selectors
-                // i.e., selects matching children only
                 .to(quizMainBgRef.current, { bottom: 0, duration: 0.8, ease: 'power2.inOut' })
-                // .from(quizMainQueHeadingRef.current, { x:-50, y:-50, opacity: 0, left:"50%", top:"50%", duration: 0.1, ease: 'power2.inOut' })
                 .fromTo(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
                 .fromTo(quizMainQueRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
                 .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' });
@@ -150,12 +144,6 @@ const Home: React.FC = () => {
 
             tl.current
                 .addLabel("openQuiz")
-                // .to(quizMainQueHeadingRef.current, {
-                //     duration: 1,
-                //     // y: 0,
-                //     top: 0,
-                //     ease: "power2.out"
-                // }, 'openQuiz')
                 .to(quizMainQueRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz')
                 .to(quizCreamLogoRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
             if (questionImageEle) {
@@ -164,11 +152,7 @@ const Home: React.FC = () => {
             }
             tl.current
                 .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
-            // tl.current
-            //     .to('.quiz-top_bg svg', { x: '100%', rotation: 20, duration: 1, ease: "power4.in" }, "openQuiz+=0.35")
-            //     .to('.quiz-bottom_bg svg', { x: '-100%', y: '50%', rotation: -20, duration: 1, ease: "power4.in" }, "openMenu+=0.40");
         }, app.current as Element | undefined);
-        // tl.current.tweenFromTo(0, "openQuiz");
         tl.current.restart();
         return () => ctx.revert();
     }, [queId]);
@@ -209,7 +193,7 @@ const Home: React.FC = () => {
             if (quizData.length > parseInt(queId, 10)) {
                 navigate(`/question/${parseInt(queId, 10) + 1}`);
             } else {
-                navigate(`/question/1`);
+                navigate(`/result`);
             }
         } else {
             navigate(`/question/1`);

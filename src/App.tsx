@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import './assets/scss/App.scss'
 import Home from './components/Home'
 import Question from './components/Question';
+import Result from './components/Result';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/question/:queId",
     element: <Question />,
+  },
+  {
+    path: "/result",
+    element: <Result />,
   }
 ]);
 
