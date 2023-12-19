@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Dev
+name: Staging
 
 on:
   push:
     branches:
-      - deploy/dev
+      - deploy/staging
   workflow_dispatch:
 
 concurrency: 
@@ -15,9 +15,9 @@ concurrency:
 
 jobs:
   build:
-    name: 'Dev'
+    name: 'Staging'
     environment:
-      name: 'Dev'
+      name: 'Staging'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     runs-on: [ubuntu-latest]
 
@@ -25,13 +25,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Publish
-        run: dotnet publish -c Debug -o dist
+        run: dotnet publish -c Release -o dist
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'cadburycremeegg'
-          slot-name: 'Dev'
-          publish-profile: ${{ secrets.DEPLOY_DEV }}
+          slot-name: 'Staging'
+          publish-profile: ${{ secrets.DEPLOY_STAGING }}
           package: dist
