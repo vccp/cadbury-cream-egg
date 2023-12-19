@@ -10,7 +10,7 @@ public class Entry
     [Key, JsonIgnore]
     public int Id { get; set; }
 
-    [NotMapped, Required, JsonPropertyName("g-recaptcha-response")]
+    [NotMapped, Required]
     public string RecaptchaResponse { get; set; }
 
     [Required, EmailAddress, MaxLength(128)]
