@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../assets/scss/Home.scss'
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
 import Cadbury_Torn_in_Half_R3_Simp from '../assets/images/Egg-Landing.png'
 import Footer from './Footer';
@@ -13,15 +12,17 @@ const Home: React.FC = () => {
     const handleTakeQuizClick = () => {
         if (isQueOpen === false) {
             navigate("/question/1");
-            // timeline.tweenFromTo(0, "openQuiz");
-            // timeline.restart();
             setIsQue(true);
         }
     };
 
     return (
-        <div className={`home ${isQueOpen ? "queIsOpen" : ""}`} >
-            <section className="home-section" data-scroll-section>
+        <div className={`home primary-screen ${isQueOpen ? "queIsOpen" : ""}`} >
+            <section 
+            className="home-section primary-screen-section" 
+            style={{
+                backgroundImage: `url(${new URL('../assets/images/BGLandingEggRepeatMobile.svg', import.meta.url).href})`
+            }}>
                 <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                 <img className='cadburyTornImage' src={Cadbury_Torn_in_Half_R3_Simp} alt="" />
                 <h1 className="main-heading text-yellow">THE WAY YOU EAT A <br />CREME EGG SAYS <br />EVERYTHING ABOUT YOU</h1>

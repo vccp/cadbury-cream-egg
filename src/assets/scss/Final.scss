@@ -1,0 +1,15 @@
+.final {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .cadburyCreamLogoImage{
+        width: 90px;
+        margin-top: 30px;
+    }
+    .cardImg{
+        width: 170px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}

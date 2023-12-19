@@ -1,119 +1,3 @@
-@import './variables.scss';
-
-.home {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.home-section {
-    background-image: url('../images/BGLandingEggRepeatMobile.svg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $white;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-
-    @include respond-to("tablet") {
-        background-image: url('../images/BGLandingEggRepeatDesktop.svg');
-    }
-
-}
-
-.main-heading {
-    margin-bottom: 0;
-}
-
-.cadburyCreamLogoImage {
-    width: 85px;
-    margin-top: 30px;
-
-    @include respond-to("tablet") {
-        width: 125px;
-        margin-top: 60px;
-    }
-}
-
-.questionImage {
-    width: 90%;
-    border-radius: 10px;
-
-    @include respond-to("mobile") {
-        width: 350px;
-    }
-}
-
-.cadburyTornImage {
-    width: 90%;
-    margin-top: 20px;
-
-    @include respond-to("mobile") {
-        width: 360px;
-    }
-
-    @include respond-to("tablet") {
-        width: 615px;
-        margin-top: 50px;
-    }
-}
-
-h1 {
-    max-width: 90%;
-
-    @include respond-to("mobile") {
-        max-width: 280px;
-    }
-
-    @include respond-to("tablet") {
-        max-width: 100%;
-    }
-
-    br {
-        display: none;
-
-        @include respond-to("tablet") {
-            display: block
-        }
-    }
-}
-
-h2 {
-    max-width: 90%;
-
-    @include respond-to("mobile") {
-        max-width: 200px;
-    }
-
-    @include respond-to("tablet") {
-        max-width: 100%;
-    }
-}
-
-.btn {
-    &.primary {
-        width: 90%;
-        border-radius: 100px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        padding: 0.6em 1.2em;
-        margin-bottom: 50px;
-
-        @include respond-to("mobile") {
-            width: 240px;
-        }
-
-        @include respond-to("tablet") {
-            width: 320px;
-        }
-    }
-}
-
 .quiz-main {
     position: relative;
     top: 0;
@@ -137,48 +21,6 @@ h2 {
         transition: background-color 400ms;
     }
     
-    .quiz-top_bg {
-        position: absolute;
-        top: -10px;
-    }
-    .quiz-bottom_bg {
-        position: absolute;
-        bottom: -10px;
-        width: 100%;
-        svg{
-            width: 100%;
-        }
-    }
-    .quiz-bottom-left_bg {
-        position: absolute;
-        left: -10px;
-        bottom: -10px;
-    }
-    .quiz-top-right_bg{
-        position: absolute;
-        top: -10px;
-        right: -10px;
-    }
-    .quiz-top-left_bg{
-        position: absolute;
-        top: -10px;
-        left: -10px;
-    }
-    .quiz-egg-repeat_bg{
-        position: absolute;
-        width: 100%;
-        svg{
-            width: 100%;
-        }
-    }
-    .quiz-full-wave_bg{
-        position: absolute;
-        width: 100%;
-        svg{
-            width: 100%;
-        }
-    }
-
     .quiz-main__items {
         height: 100%;
         display: flex;
@@ -373,6 +215,48 @@ h2 {
                 color: $white;
             }
         }
+    }
+}
+
+.quiz-top_bg {
+    position: absolute;
+    top: -10px;
+}
+.quiz-bottom_bg {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    svg{
+        width: 100%;
+    }
+}
+.quiz-bottom-left_bg {
+    position: absolute;
+    left: -10px;
+    bottom: -10px;
+}
+.quiz-top-right_bg{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.quiz-top-left_bg{
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+.quiz-egg-repeat_bg{
+    position: absolute;
+    width: 100%;
+    svg{
+        width: 100%;
+    }
+}
+.quiz-full-wave_bg{
+    position: absolute;
+    width: 100%;
+    svg{
+        width: 100%;
     }
 }
 

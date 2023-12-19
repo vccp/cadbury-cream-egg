@@ -1,4 +1,13 @@
-body {
-    font-family: 'CremeEgg-CondensedBlack';
-  }
-  
+@import './variables.scss';
+
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
+@import './App.scss';
+
+@import './PrimaryScreen.scss';
+@import './Question.scss';
+@import './Form.scss';
+@import './Result.scss';
+@import './Share.scss';
+@import './Final.scss';

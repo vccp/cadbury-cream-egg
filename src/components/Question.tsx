@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import '../assets/scss/Home.scss'
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
 
 import BGQ1WavebottomDesktop from "../assets/images/BGQ1WavebottomDesktop.svg?react";
@@ -23,30 +22,21 @@ import BGQ5FullWaveDesktop from "../assets/images/BGQ5FullWaveDesktop.svg?react"
 // import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
 
 import { useNavigate, useParams } from 'react-router-dom';
+import { Answer, QuizItem, QuizOption, QuizResponse } from '../types/quizTypes';
 // import { useNavigate } from 'react-router-dom';
 
-interface QuizItem {
-    id: number;
-    question: string;
-    options: string[];
-    layout: string;
-    image: string;
-    multi_select: boolean;
-}
-
-interface Answer {
-    questionId: number;
-    answer: string | string[] | null;
-}
 
 const timeline = gsap.timeline({
     paused: true
 });
 
-const Home: React.FC = () => {
+const Question = () => {
     const navigate = useNavigate();
     const { queId } = useParams();
-    const [quizData, setQuizData] = useState<QuizItem[]>([]);
+    const [quizRes, setQuizRes] = useState<QuizResponse>({
+        quizData: [],
+        matrix: {}
+    });
     const [question, setQuestion] = useState<QuizItem | undefined>(undefined);
     const tl = useRef(timeline);
     const app = useRef<HTMLDivElement>(null);
@@ -73,18 +63,18 @@ const Home: React.FC = () => {
                     throw new Error(`Failed to fetch JSON: ${response.statusText}`);
                 }
 
-                const data: QuizItem[] = await response.json();
-                setQuizData(data);
+                const res: QuizResponse = await response.json();
+                setQuizRes(res);
                 if (queId) {
                     const parsedQueId = parseInt(queId, 10);
                     if (!isNaN(parsedQueId)) {
-                        const foundQuizItem = data.find(obj => obj.id === parsedQueId);
+                        const foundQuizItem = res.quizData.find((obj: { id: number; }) => obj.id === parsedQueId);
                         if (foundQuizItem) {
                             setQuestion(foundQuizItem);
                         }
                     }
                 } else {
-                    setQuestion(data[0]);
+                    setQuestion(res.quizData[0]);
                 }
             } catch (err) {
                 setError(`Error fetching JSON data: ${(err as Error).message}`);
@@ -98,13 +88,13 @@ const Home: React.FC = () => {
         if (queId) {
             const parsedQueId = parseInt(queId, 10);
             if (!isNaN(parsedQueId)) {
-                const foundQuizItem = quizData.find(obj => obj.id === parsedQueId);
+                const foundQuizItem = quizRes.quizData.find(obj => obj.id === parsedQueId);
                 if (foundQuizItem) {
                     setQuestion(foundQuizItem);
                 }
             }
         } else {
-            setQuestion(quizData[0]);
+            setQuestion(quizRes.quizData[0]);
         }
     }, [queId]);
 
@@ -112,17 +102,16 @@ const Home: React.FC = () => {
         const ctx = gsap.context(() => {
             tl.current
                 .to(quizMainBgRef.current, { bottom: 0, duration: 0.8, ease: 'power2.inOut' })
-                .fromTo(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
-                .fromTo(quizMainQueRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut'})
+                .fromTo(quizMainQueHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut' })
+                .fromTo(quizMainQueRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut' })
                 .from(quizCreamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' });
             const questionImageEle = questionImageRef?.current;
             if (questionImageEle) {
                 tl.current
-                    .from(questionImageEle, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' });
+                    .from(questionImageEle, { opacity: 0, scale: 0.1, top: "50%", duration: 0.4, ease: 'power2.inOut' });
             }
             tl.current
-                .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.8, ease: 'power2.inOut' });
-            console.log('queId', queId);
+                .from(quizMainAnsRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.4, ease: 'power2.inOut' });
             if (queId === "1" || queId === "2") {
                 tl.current
                     .from('.quiz-top-right_bg svg', { opacity: 0, x: '120%', rotation: -20, duration: 2, ease: "power2.inOut" }, 1.5)
@@ -157,7 +146,8 @@ const Home: React.FC = () => {
         return () => ctx.revert();
     }, [queId]);
 
-    const handleAnswer = (selectedAnswer: string) => {
+    const handleAnswer = (choice: QuizOption) => {
+        const { option } = choice;
         const existingAnswer = answers.find((a) => a.questionId === currentQuestion);
         const isMultiSelect = question?.multi_select || false;
 
@@ -167,10 +157,10 @@ const Home: React.FC = () => {
                     ? {
                         ...a,
                         answer: isMultiSelect
-                            ? (a.answer as string[]).includes(selectedAnswer)
-                                ? (a.answer as string[]).filter((ans) => ans !== selectedAnswer)
-                                : [...(a.answer as string[]), selectedAnswer]
-                            : selectedAnswer,
+                            ? (a.answer as QuizOption[]).some((ans) => ans.option === option)
+                                ? (a.answer as QuizOption[]).filter((ans) => ans.option !== option)
+                                : [...(a.answer as QuizOption[]), choice]
+                            : choice,
                     }
                     : a
             );
@@ -181,8 +171,8 @@ const Home: React.FC = () => {
                 ...answers,
                 {
                     questionId: currentQuestion,
-                    answer: isMultiSelect ? [selectedAnswer] : selectedAnswer,
-                },
+                    answer: isMultiSelect ? [choice] : choice
+                }
             ]);
         }
     };
@@ -190,10 +180,24 @@ const Home: React.FC = () => {
     const handleNext = () => {
         if (queId) {
             setCurrentQuestion(currentQuestion + 1);
-            if (quizData.length > parseInt(queId, 10)) {
+            if (quizRes.quizData.length > parseInt(queId, 10)) {
                 navigate(`/question/${parseInt(queId, 10) + 1}`);
             } else {
-                navigate(`/result`);
+                const combinedCode = answers.map((item) =>
+                    Array.isArray(item.answer)
+                        ? item.answer.map((ans) => ans.code || '').join('')
+                        : item.answer?.code || '').join('');
+                const answerForFirstResult = answers.find((a) => a.questionId === 2);
+                const matrix = quizRes.matrix[combinedCode];
+                if (answerForFirstResult) {
+                    const matrixResults = [
+                        `You eat yours ${(answerForFirstResult.answer as QuizOption).option}. You're really out there`,
+                        matrix['personalityLine'],
+                         ...matrix['4xTraits'], 
+                         ...matrix['2xReccomandations']
+                        ];
+                    navigate("/result", { state: { code: combinedCode, matrixResults } });
+                }
             }
         } else {
             navigate(`/question/1`);
@@ -269,42 +273,39 @@ const Home: React.FC = () => {
                         <div ref={quizMainAnsRef} className="ansMain">
                             {question &&
                                 <div className={`ansWrapper ${question.layout}`}>
-                                    {question.options.map((choice, index) => (
+                                    {question.options.map((choice: QuizOption, index: number) => (
                                         <React.Fragment key={index}>
-                                            {choice === 'or' && <span className='or'>OR</span>}
-                                            {choice !== 'or' &&
-                                                <div
-                                                    className={`ans ${answers.some(
-                                                        (a) =>
-                                                            a.questionId === currentQuestion &&
-                                                            (question.multi_select
-                                                                ? (a.answer as string[]).includes(choice)
-                                                                : a.answer === choice)
-                                                    )
-                                                        ? 'selected'
-                                                        : ''
-                                                        }`}
-                                                    onClick={() => handleAnswer(choice)}
-                                                >
-                                                    {question.layout === 'egg_shape' && (
-                                                        <div
-                                                            className={`ans-option egg-shape ${index === 0 ? 'left' : 'right'
-                                                                }`}
-                                                        ></div>
-                                                    )}
-                                                    <span className='ansText' dangerouslySetInnerHTML={{ __html: choice }} />
-                                                </div>
-
-                                            }
+                                            {question.divider && index === 1 && <span className='or'>{question.divider}</span>}
+                                            <div
+                                                className={`ans ${answers.some(
+                                                    (a) =>
+                                                        a.questionId === currentQuestion &&
+                                                        (question.multi_select
+                                                            ? (a.answer as QuizOption[]).some((ans) => ans.option === choice.option)
+                                                            : (a.answer as QuizOption)?.option === choice.option)
+                                                )
+                                                    ? 'selected'
+                                                    : ''
+                                                    }`}
+                                                onClick={() => handleAnswer(choice)}
+                                            >
+                                                {question.layout === 'egg_shape' && (
+                                                    <div
+                                                        className={`ans-option egg-shape ${index === 0 ? 'left' : 'right'
+                                                            }`}
+                                                    ></div>
+                                                )}
+                                                <span className='ansText' dangerouslySetInnerHTML={{ __html: choice.option }} />
+                                            </div>
                                         </React.Fragment>
                                     ))}
                                 </div>
                             }
-                            {answers.some((a) => a.questionId === currentQuestion) &&
-                                <button className='btn primary' onClick={handleNext}>
-                                    Next
-                                </button>
-                            }
+
+                            <button className='btn primary' onClick={handleNext}
+                                style={answers.some((a) => a.questionId === currentQuestion) ? { visibility: "visible", opacity: 1 } : { visibility: "hidden", opacity: 0 }}>
+                                Next
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -313,4 +314,4 @@ const Home: React.FC = () => {
     );
 }
 
-export default Home;
+export default Question;

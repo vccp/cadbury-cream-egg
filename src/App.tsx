@@ -1,8 +1,6 @@
 import { useRef } from 'react'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
-// import './assets/scss/scroll.scss'
-import './assets/scss/App.scss'
 import Home from './components/Home'
 import Question from './components/Question';
 import Result from './components/Result';

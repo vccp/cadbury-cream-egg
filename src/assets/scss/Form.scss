@@ -1,0 +1,77 @@
+.quizForm {
+    background-color: $purple;
+
+    .quizForm-section {
+        justify-content: flex-start;
+    }
+
+    .que-form-container {
+        text-align: center;
+    }
+
+    .quiz-form-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: left;
+
+        .formGroup {
+            margin-bottom: 0.75rem;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: $white;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+                background: transparent;
+                border: 2px solid $yellow;
+                border-radius: 5px;
+                color: $yellow;
+            }
+        }
+
+        .validation-error {
+            color: red;
+            margin-top: 5px;
+        }
+    }
+    .keepUpToDate{
+        margin: 0.5rem 0;
+    }
+}
+
+.checkboxes {
+    margin-bottom: 20px;
+
+    .checkbox {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        input {
+            margin-right: 10px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 2px solid #ffc107;
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            outline: none;
+            cursor: pointer;
+            border-radius: 3px;
+            &:checked {
+                background-color: #ffc107;
+            }
+        }
+
+        label {
+            cursor: pointer;
+        }
+    }
+}
