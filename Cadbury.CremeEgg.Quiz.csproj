@@ -15,6 +15,7 @@
     <SelfContained>false</SelfContained>
     <DebugType>embedded</DebugType>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
