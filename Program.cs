@@ -37,7 +37,13 @@ public class Program
         app.UseHttpsRedirection();
         app.UseResponseCompression();
         app.UseResponseCaching();
-        app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            OnPrepareResponse = ctx =>
+            {
+                ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=604800");
+            }
+        });
 
         app.MapPost("/api/submit", HandleSubmit);
 
