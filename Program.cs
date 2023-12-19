@@ -16,6 +16,11 @@ public class Program
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
         builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
+        builder.Services.AddResponseCompression(x =>
+        {
+            x.EnableForHttps = true;
+        });
+        builder.Services.AddResponseCaching();
 
         var app = builder.Build();
 
@@ -30,6 +35,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseResponseCompression();
+        app.UseResponseCaching();
         app.UseStaticFiles();
 
         app.MapPost("/api/submit", HandleSubmit);
