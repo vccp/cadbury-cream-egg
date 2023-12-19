@@ -3,8 +3,17 @@
     src: url('./../fonts/CremeEgg-CondensedBlack.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
+
+@font-face {
+    font-family: "canada-type-gibson";
+    src: url('./../fonts/canada.woff') format('woff2');
+    font-display: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
+}
+
 
 html,
 body {
@@ -161,6 +170,6 @@ nav {
     }
 }
 
-.flex-1{
+.flex-1 {
     flex: 1;
 }
