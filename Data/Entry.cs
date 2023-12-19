@@ -24,7 +24,7 @@ public class Entry
     [Required, MinLength(5), MaxLength(5), RegularExpression("[0-9]{5}")]
     public string Answers { get; set; }
 
-    [Required]
+    [Required, AllowedValues(true)]
     public bool TermsAndConditions { get; set; }
     public bool OptIn { get; set; }
 

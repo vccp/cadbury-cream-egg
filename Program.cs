@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Cadbury.CremeEgg.Quiz.Data;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCore.ReCaptcha;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.AspNetCore.Http;
 using MiniValidation;
 
 namespace Cadbury.CremeEgg.Quiz;
@@ -46,24 +44,12 @@ public class Program
     private static async Task<IResult> HandleSubmit(
             HttpContext context,
             [FromServices] ApplicationDbContext db,
-            [FromServices] IReCaptchaService recaptcha,
-            [FromBody] Entry entry)
+            [FromBody] ValidatedEntry entry)
     {
-        var validation = await MiniValidator.TryValidateAsync(entry);
+        var validation = await MiniValidator.TryValidateAsync(entry, context.RequestServices);
         if (!validation.IsValid)
         {
             return Results.ValidationProblem(validation.Errors);
-        }
-        var result = await recaptcha.VerifyAsync(entry.RecaptchaResponse);
-        if (!result)
-        {
-            return Results.ValidationProblem(new Dictionary<string, string[]>() { { "g-recaptcha-response", new[] { "The g-recaptcha-response failed to validate." } } });
-        }
-
-        var existing = db.Entries.Any(x => x.Email == entry.Email);
-        if (existing)
-        {
-            return Results.Conflict();
         }
 
         try
