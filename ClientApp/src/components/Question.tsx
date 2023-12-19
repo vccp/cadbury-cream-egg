@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
+import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 
 import BGQ1WavebottomDesktop from "../assets/images/BGQ1WavebottomDesktop.svg?react";
 import BGQ1WavetopDesktop from "../assets/images/BGQ1WavetopDesktop.svg?react";

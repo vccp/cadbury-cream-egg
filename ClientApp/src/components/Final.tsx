@@ -1,4 +1,4 @@
-import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
+import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 import cardImg from '../assets/images/q2.jpg'
 import Footer from './Footer';
 // import { useNavigate } from 'react-router-dom';

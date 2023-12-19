@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as ReactDOMServer from "react-dom/server";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
+import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 import JourneyTracker from "../assets/images/JourneyTracker.svg?react";
 // import BGResultEggUprightDesktop from "../assets/images/BGResultEggUprightDesktop.svg?react";
 // import BGResultEggUprightMobile from "../assets/images/BGResultEggUprightMobile.svg?react";

@@ -1,5 +1,5 @@
-import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
-// import Cadbury_Torn_in_Half_R3_Simp from '../assets/images/Egg-Landing.png'
+import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
+// import Cadbury_Torn_in_Half_R3_Simp from '../assets/images/Egg-Landing.webp'
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import JourneyTracker from "../assets/images/JourneyTracker.svg?react";
