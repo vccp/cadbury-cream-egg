@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
+#nullable disable
+
 [Index(nameof(OptIn))]
 [Index(nameof(Answers))]
 [Index(nameof(Market), nameof(Email))]
@@ -35,3 +37,4 @@ public class Entry
     [JsonIgnore]
     public int Market { get; set; }
 }
+#nullable restore

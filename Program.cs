@@ -21,6 +21,9 @@ public class Program
             x.EnableForHttps = true;
         });
         builder.Services.AddResponseCaching();
+        
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddOpenApiDocument();
 
         var app = builder.Build();
 
