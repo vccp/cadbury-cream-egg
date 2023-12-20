@@ -47,6 +47,7 @@ const Result = () => {
             <section className={`resultSection result_${activeIndex + 1}`}>
                 <Swiper
                     onSlideChange={handleSlideChange}
+                    autoHeight={true}
                     pagination={{
                         clickable: true,
                         el: '.swiper-pagination-custom',
@@ -66,7 +67,7 @@ const Result = () => {
                     {resultData.matrixResults.map((slide: string[], index: number) => (
                         <SwiperSlide
                             key={index + 1}
-                            className={`slide_${index + 1}`}
+                            className={`fixedHeight slide_${index + 1}`}
                             >
                             <div className='resultSlideInner' 
                             style={{
