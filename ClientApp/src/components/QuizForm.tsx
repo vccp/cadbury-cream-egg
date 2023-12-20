@@ -172,7 +172,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                         <label htmlFor='checkbox3'>Opt in for marketing comms (tick box)</label>
                                     </div>
                                 </div>
-                                <ReCAPTCHA ref={recaptcha} sitekey="6LeEFTYpAAAAABUAiiUqcthHc4yPbz9vyxeK_F6r" />
+                                <ReCAPTCHA ref={recaptcha} sitekey="6Lf2ITYpAAAAAJzYhRbatwZikff-hOk_v-eij2MP" />
                                 <button type="submit" className='btn primary'>SUBMIT</button>
                             </form>
                         </div>
