@@ -20,9 +20,7 @@ const Home: React.FC = () => {
         <div className={`home primary-screen ${isQueOpen ? "queIsOpen" : ""}`} >
             <section 
             className="home-section primary-screen-section" 
-            style={{
-                backgroundImage: `url(${new URL('../assets/images/BGLandingEggRepeatMobile.svg', import.meta.url).href})`
-            }}>
+           >
                 <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                 <img className='cadburyTornImage' src={Cadbury_Torn_in_Half_R3_Simp} alt="" />
                 <h1 className="main-heading text-yellow">THE WAY YOU EAT A <br />CREME EGG SAYS <br />EVERYTHING ABOUT YOU</h1>

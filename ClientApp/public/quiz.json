@@ -43,28 +43,28 @@
             "question": "How do you eat yours?",
             "options": [
                 {
-                    "option": "All in one go"
+                    "option": "You eat yours all in one go"
                 },
                 {
-                    "option": "In two bites"
+                    "option": "You eat yours in two mouthfuls"
                 },
                 {
-                    "option": "With a teaspoon"
+                    "option": "You eat yours with a teaspoon"
                 },
                 {
-                    "option": "Suck out the goo<br/> like an oyster"
+                    "option": "You scoop the goo out with your finger"
                 },
                 {
-                    "option": "Scoop the goo out<br/> with your finger"
+                    "option": "You suck out the goo like an oyster"
                 },
                 {
-                    "option": "Save half for later"
+                    "option": "You save half for later"
                 },
                 {
-                    "option": "Like an apple"
+                    "option": "You eat yours in small nibbles"
                 },
                 {
-                    "option": "Melted on toast"
+                    "option": "You eat yours melted on toast"
                 }
             ],
             "layout": "two_column",

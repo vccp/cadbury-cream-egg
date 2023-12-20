@@ -1,15 +1,153 @@
 .final {
+    --quiz-scale-x: 1;
+    --quiz-scale-y: 1;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    .cadburyCreamLogoImage{
-        width: 90px;
-        margin-top: 30px;
+    .primary-screen-section{
+        justify-content: flex-start;
     }
-    .cardImg{
-        width: 170px;
+    .cadburyCreamLogoImage {
+        width: 90px;
+        margin-top: 10rem;
+    }
+
+    .card {
+        width: 300px;
         margin-top: 2rem;
         margin-bottom: 2rem;
+        text-align: left;
+
+        .cardLink {
+            text-decoration: none;
+        }
+
+        .cardInner {
+            overflow: hidden;
+            transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+            transition-duration: .5s;
+            transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+            transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+            border-radius: 16px;
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            background-color: rgb(228 218 236/1);
+
+            .carTag {
+                font-family: Gibson-SemiBold, sans-serif;
+                border-radius: 8px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: .02em;
+                text-align: center;
+                text-transform: uppercase;
+                line-height: 14px;
+                padding: 2px 8px;
+                color: rgb(75 9 131/1);
+                background-color: rgb(235 195 115/1);
+                display: inline-block;
+                margin: 12px;
+
+                @media (min-width: 768px) {
+                    font-size: 12px;
+                    padding-bottom: 4px;
+                    padding-top: 4px;
+                }
+            }
+
+            .mask {
+                display: flex;
+                // width: 100%;
+                align-items: center;
+                justify-content: center;
+                background-image: url(data:image/png;base64,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4aKu33fnix+KYAIATseiVNWsbfoJVTN7yU3pzwbUeI+pLdUHN30DAGfjfiH9c/tTm4ByLAcA8KzZ4+O+6sc//u3vjuUAAF5kddxX/fjtX9sCAMCL1QUAgIiAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAICSgAgJCAAgAI/Q+KeCoO7HiGpgAAAABJRU5ErkJggg==);
+                background-size: cover;
+                padding-left: 12px;
+                padding-right: 12px;
+                min-height: 222px;
+
+                &:hover {
+                    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+                }
+
+                .cremeEggImg {
+                    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(var(--quiz-scale-x)) scaleY(var(--quiz-scale-y));
+                    display: block;
+                    height: auto;
+                    transition-duration: .5s;
+                    transition-property: all;
+                    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+                    width: 100%;
+                    outline: none;
+                    max-width: 100%;
+                    object-fit: contain;
+
+
+                    @media (min-width: 768px) {
+                        max-height: 222px;
+                    }
+                }
+            }
+
+            &:hover {
+                --quiz-scale-x: 1.05;
+                --quiz-scale-y: 1.05;
+                transform: translate(var(--quiz-scale-x), var(--quiz-scale-y)) rotate(0) skewX(0) skewY(0) scaleX(var(--quiz-scale-x)) scaleY(var(--quiz-scale-y));
+                box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000;
+                transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.05) scaleY(1.05);
+
+                .mask {
+                    .cremeEggImg {
+                        --quiz-scale-x: 0.95;
+                        --quiz-scale-y: 0.95;
+                    }
+                }
+            }
+
+            .cardFooter {
+                margin-top: -1px;
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                text-transform: uppercase;
+                background-color: rgb(75 9 131/1);
+
+                .cardFooterTitle {
+                    font-family: Gibson-SemiBold, sans-serif;
+                    font-size: 14px;
+                    letter-spacing: .04em;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    padding-left: 24px;
+                    padding-right: 24px;
+                    align-items: center;
+                    height: 100%;
+                    display: flex;
+                    margin-bottom: 24px;
+                    font-weight: 700;
+                    text-align: center;
+                    @media (min-width: 768px) {
+                        padding-top: 24px;
+                        font-size: 24px;
+                        line-height: 24px;
+                    }
+
+                    span {
+                        -webkit-box-orient: vertical;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+
+                        @media (min-width: 768px) {
+                            -webkit-line-clamp: 3;
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }
