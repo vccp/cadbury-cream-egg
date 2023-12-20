@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from './components/Home'
 import Question from './components/Question';
 import Result from './components/Result';
+import QuizForm from './components/QuizForm';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/result",
     element: <Result />,
+  },
+  {
+    path: "/form",
+    element: <QuizForm />,
   }
 ]);
 
