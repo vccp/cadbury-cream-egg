@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { QuizFormData } from '../types/formTypes';
-import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.png'
+import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 import BGQ3DotsBottomDesktop from "../assets/images/BGQ3DotsBottomDesktop.svg?react";
 // import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
 import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
