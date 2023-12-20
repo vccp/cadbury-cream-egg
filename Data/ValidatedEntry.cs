@@ -21,7 +21,7 @@ public class ValidatedEntry : Entry, IAsyncValidatableObject
 
         
         var db = validationContext.GetRequiredService<ApplicationDbContext>();
-        var existing = db.Entries.Any(x => x.Email == Email);
+        var existing = db.Entries.Any(x => x.Market == Market && x.Email == Email);
         if (existing)
         {
             errors ??= [];

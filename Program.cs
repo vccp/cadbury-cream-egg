@@ -59,6 +59,8 @@ public class Program
             [FromServices] ApplicationDbContext db,
             [FromBody] ValidatedEntry entry)
     {
+        entry.Market = context.Request.Host.Host.EndsWith(".ie", StringComparison.InvariantCultureIgnoreCase) ? 2 : 1; // Horrible, but it works.
+
         var validation = await MiniValidator.TryValidateAsync(entry, context.RequestServices);
         if (!validation.IsValid)
         {

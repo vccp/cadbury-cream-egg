@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 [Index(nameof(OptIn))]
 [Index(nameof(Answers))]
+[Index(nameof(Market), nameof(Email))]
+[Index(nameof(Market))]
 public class Entry
 {
     [Key, JsonIgnore]
@@ -30,4 +32,6 @@ public class Entry
 
     [JsonIgnore]
     public DateTimeOffset CreationsDate { get; set; }
+    [JsonIgnore]
+    public int Market { get; set; }
 }
