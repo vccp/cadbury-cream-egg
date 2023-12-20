@@ -7,7 +7,7 @@ import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
 // import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useLocation, useNavigate } from 'react-router';
-import { Client, IValidatedEntry, ValidatedEntry } from '../types/ServerSide';
+import { Client, ValidatedEntry } from '../types/ServerSide';
 
 const QuizForm = () => {
     const navigate = useNavigate();
