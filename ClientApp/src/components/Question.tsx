@@ -5,21 +5,24 @@ import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVe
 import BGQ1WavebottomDesktop from "../assets/images/BGQ1WavebottomDesktop.svg?react";
 import BGQ1WavetopDesktop from "../assets/images/BGQ1WavetopDesktop.svg?react";
 
+import BGQ1WavebottomMobile from "../assets/images/BGQ1WavebottomMobile.svg?react";
+import BGQ1WavetopMobile from "../assets/images/BGQ1WavetopMobile.svg?react";
+
 import BGQ2WaveBottomDesktop from "../assets/images/BGQ2WaveBottomDesktop.svg?react";
-// import BGQ2WaveBottomMobile from "../assets/images/BGQ2WaveBottomMobile.svg?react";
+import BGQ2WaveBottomMobile from "../assets/images/BGQ2WaveBottomMobile.svg?react";
 import BGQ2WaveTopDesktop from "../assets/images/BGQ2WaveTopDesktop.svg?react";
-// import BGQ2WaveTopMobile from "../assets/images/BGQ2WaveTopMobile.svg?react";
+import BGQ2WaveTopMobile from "../assets/images/BGQ2WaveTopMobile.svg?react";
 
 import BGQ3DotsBottomDesktop from "../assets/images/BGQ3DotsBottomDesktop.svg?react";
-// import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
+import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
 import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
-// import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
+import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 
 import BGQ4EggRepeatDesktop from "../assets/images/BGQ4EggRepeatDesktop.svg?react";
-// import BGQ4EggRepeatMobile from "../assets/images/BGQ4EggRepeatMobile.svg?react";
+import BGQ4EggRepeatMobile from "../assets/images/BGQ4EggRepeatMobile.svg?react";
 
 import BGQ5FullWaveDesktop from "../assets/images/BGQ5FullWaveDesktop.svg?react";
-// import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
+import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { Answer, QuizItem, QuizOption, QuizResponse } from '../types/quizTypes';
@@ -210,49 +213,57 @@ const Question = () => {
 
     return (
         <div ref={app} >
-            <div className='quiz-main'>
+            <div className={`quiz-main que_${queId}`}>
                 <div ref={quizMainBgRef} className="quiz-main__bg"></div>
                 {queId === "1" &&
                     <>
                         <div className="quiz-bottom-left_bg">
-                            <BGQ1WavebottomDesktop />
+                            <BGQ1WavebottomDesktop className='desktop' />
+                            <BGQ1WavebottomMobile className='mobile' />
                         </div>
                         <div className="quiz-top-right_bg">
-                            <BGQ1WavetopDesktop />
+                            <BGQ1WavetopDesktop className='desktop'/>
+                            <BGQ1WavetopMobile className='mobile' />
                         </div>
                     </>
                 }
                 {queId === "2" &&
                     <>
                         <div className="quiz-bottom-left_bg">
-                            <BGQ2WaveBottomDesktop />
+                            <BGQ2WaveBottomDesktop className='desktop'/>
+                            <BGQ2WaveBottomMobile className='mobile' />
                         </div>
                         <div className="quiz-top-right_bg">
-                            <BGQ2WaveTopDesktop />
+                            <BGQ2WaveTopDesktop className='desktop'/>
+                            <BGQ2WaveTopMobile className='mobile' />
                         </div>
                     </>
                 }
                 {queId === "3" &&
                     <>
                         <div className="quiz-bottom_bg">
-                            <BGQ3DotsBottomDesktop />
+                            <BGQ3DotsBottomDesktop className='desktop'/>
+                            <BGQ3DotsBottomMobile className='mobile' />
                         </div>
                         <div className="quiz-top-left_bg">
-                            <BGQ3DotsTopDesktop />
+                            <BGQ3DotsTopDesktop className='desktop'/>
+                            <BGQ3DotsTopMobile className='mobile' />
                         </div>
                     </>
                 }
                 {queId === "4" &&
                     <>
                         <div className="quiz-egg-repeat_bg">
-                            <BGQ4EggRepeatDesktop />
+                            <BGQ4EggRepeatDesktop className='desktop'/>
+                            <BGQ4EggRepeatMobile className='mobile' />
                         </div>
                     </>
                 }
                 {queId === "5" &&
                     <>
                         <div className="quiz-full-wave_bg">
-                            <BGQ5FullWaveDesktop />
+                            <BGQ5FullWaveDesktop className='desktop'/>
+                            <BGQ5FullWaveMobile className='mobile' />
                         </div>
                     </>
                 }

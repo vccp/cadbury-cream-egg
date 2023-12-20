@@ -65,7 +65,8 @@ const Result = () => {
                     <div className="swiper-pagination-custom" />
                     {resultData.matrixResults.map((slide: string[], index: number) => (
                         <SwiperSlide
-                            key={index + 2}
+                            key={index + 1}
+                            className={`slide_${index + 1}`}
                             >
                             <div className='resultSlideInner' 
                             style={{
@@ -88,11 +89,13 @@ const Result = () => {
                         </SwiperSlide>
                     ))}
                     <SwiperSlide
-                        key={9}>
+                        key={9}
+                        className={`slide_${9}`}>
                         <Share backgroundImage={`url(${new URL('../images/BGLandingEggRepeatMobile.svg', import.meta.url).href})`} />
                     </SwiperSlide>
                     <SwiperSlide
-                        key={10}>
+                        key={10}
+                        className={`slide_${10}`}>
                         <Final backgroundImage={`url(${new URL('../images/BGLandingEggRepeatMobile.svg', import.meta.url).href})`} />
                     </SwiperSlide>
                 </Swiper>

@@ -14,7 +14,7 @@
                 }
             ],
             "divider": "OR",
-            "layout": "egg_shape",
+            "layout": "three_column",
             "multi_select": false
         },
         {

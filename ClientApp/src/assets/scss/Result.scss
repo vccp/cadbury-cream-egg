@@ -6,7 +6,11 @@
     min-height: 100%;
 
     h1 {
-        font-size: 7.5rem;
+        font-size: 3.3rem;
+        margin: 0 auto;
+        @include respond-to("tablet") {
+            font-size: 4.6vw;
+        }
     }
 
     .resultSection {
@@ -28,7 +32,7 @@
 
         .resultSlideInner {
             display: flex;
-            justify-content: space-between;
+         justify-content: space-between;
             align-items: center;
             flex-direction: column;
             height: 100%;
@@ -38,7 +42,7 @@
         }
 
         .resultSlideContent {
-            margin-top: 180px;
+            margin-top: 0px;
             max-width: 1140px;
         }
 
