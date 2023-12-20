@@ -7,6 +7,7 @@ import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
 // import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useLocation, useNavigate } from 'react-router';
+import { Client, IValidatedEntry, ValidatedEntry } from '../types/ServerSide';
 
 const QuizForm = () => {
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ const QuizForm = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         // const captchaValue = recaptcha.current?.getValue();
         if (!validateForm()) {
@@ -64,6 +65,17 @@ const QuizForm = () => {
         // } else if (!captchaValue) {
         //     alert("Please verify the reCAPTCHA!");
         } else {
+            await new Client().postApiSubmit(new ValidatedEntry({
+                email: '',
+                firstName: '',
+                lastName: '',
+                answers: '12113',
+                recaptchaResponse: '',
+                termsAndConditions: true,
+                optIn: true                
+            }));
+
+
             navigate("/result", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
         }
     };
