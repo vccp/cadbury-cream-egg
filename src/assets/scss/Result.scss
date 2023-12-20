@@ -5,6 +5,10 @@
     width: 100%;
     min-height: 100%;
 
+    h1 {
+        font-size: 7.5rem;
+    }
+
     .resultSection {
         background-color: $purple;
         background-size: contain;
@@ -34,7 +38,8 @@
         }
 
         .resultSlideContent {
-            margin-top: 4rem;
+            margin-top: 180px;
+            max-width: 1140px;
         }
 
         .imgWrapper {
@@ -54,6 +59,10 @@
                 margin-top: 50px;
             }
         }
+    }
+
+    .cadburyCreamLogoImage {
+        margin-bottom: 30px
     }
 }
 
@@ -86,11 +95,14 @@
     z-index: 10;
     bottom: unset !important;
     align-items: center;
+    margin-top: 45px;
 }
 
 .swiper-pagination-bullet {
     // background: $yellow;
     opacity: 1;
+    width: 13px;
+    height: 13px
 }
 
 .swiper-pagination-bullet-active {
@@ -99,6 +111,6 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 27px;
-    width: 20px;
+    height: 50px;
+    width: 37px;
 }

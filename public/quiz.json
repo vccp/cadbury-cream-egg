@@ -23,7 +23,7 @@
             "options": [
                 {
                     "code": "N",
-                    "option": "1. A man riding a horse. <br/>He’s eating a creme egg."
+                    "option": "1. A man riding a horse. He’s eating a creme egg."
                 },
                 {
                     "code": "N",
@@ -43,25 +43,25 @@
             "question": "How do you eat yours?",
             "options": [
                 {
-                    "option": "All in one go"
+                    "option": "All<br/> in one go"
                 },
                 {
-                    "option": "In two bites"
+                    "option": "In<br/> two bites"
                 },
                 {
-                    "option": "With a teaspoon"
+                    "option": "With<br/> a teaspoon"
                 },
                 {
-                    "option": "Scoop the goo out with your finger"
+                    "option": "Suck<br/> out the goo<br/> like an oyster"
                 },
                 {
-                    "option": "Save half for later"
+                    "option": "Scoop<br/> the goo out<br/> with your finger"
                 },
                 {
-                    "option": "Suck out the goo like an oyster"
+                    "option": "Save<br/> half for later"
                 },
                 {
-                    "option": "Like an apple"
+                    "option": "Like<br/> an apple"
                 },
                 {
                     "option": "Melted on toast"
@@ -80,7 +80,7 @@
                 },
                 {
                     "code": "F",
-                    "option": "Give it to your friend. You know how much they want it."
+                    "option": "Give it to your friend.<br/> You know how muc<br/> they want it."
                 },
                 {
                     "code": "T",

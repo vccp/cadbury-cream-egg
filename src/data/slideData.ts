@@ -15,20 +15,20 @@ export const slideData = [
     {
         id: 2,
         backgroundImage: '../assets/images/BackgroundPurpleDesktop.png',
-        backgroundColor: '#3B0073',
-        color: '#FFDD00'
+        backgroundColor: '#ffffff',
+        color: '#ffffff'
     },
     {
         id: 3,
         backgroundImage: '../assets/images/BackgroundRedDesktop.png',
-        backgroundColor: '#3B0073',
-        color: 'white'
+        backgroundColor: '#FFDD00',
+        color: '#FFDD00'
     },
     {
         id: 4,
         backgroundImage: '../assets/images/BackgroundWhiteDesktop.png',
         backgroundColor: 'red',
-        color: '#FFDD00'
+        color: '#3B0073'
     },
     {
         id: 5,

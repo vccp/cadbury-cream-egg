@@ -45,8 +45,8 @@
         }
 
         .queHeading {
-            font-size: 2.5rem;
-            margin: 1rem 0rem;
+            font-size: 3.75rem;
+            margin: 45px 0 15px 0rem;
             position: relative;
             top: 0;
             left: auto;
@@ -58,20 +58,19 @@
         }
 
         .que {
-            font-size: 2rem;
-            margin: 1rem 0rem;
+            font-size: 4.5rem;
+            margin: 1rem 0 0 0rem;
             position: relative;
             top: 0;
 
             @include respond-to("tablet") {
-                font-size: 3.5rem;
+                font-size: 4.5rem;
             }
         }
 
         .ansMain {
             position: relative;
             top: 0;
-            margin: 1rem;
 
             .ansWrapper {
                 display: flex;
@@ -91,28 +90,31 @@
                 }
 
                 .egg-shape {
-                    width: 70px;
-                    height: 70px;
-                    background: $white;
-
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 390px;
+                    height: 390px;
                     &.left {
-                        width: 228px;
-                        height: 205px;
-                        transform: rotate(-140deg);
-                        border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+                        background-image: url('../images/eggLeft.svg');
                     }
 
                     &.right {
-                        width: 228px;
-                        height: 198px;
-                        transform: rotate(-18deg);
-                        border-radius: 50% 55% 86% 42%/66% 49% 80% 52%;
+                        background-image: url('../images/eggRight.svg');
+
                     }
                 }
 
                 &.selected {
                     .egg-shape {
-                        background: $yellow;
+                        &.left {
+                            background-image: url('../images/eggLeftActive.svg');
+                        }
+    
+                        &.right {
+                            background-image: url('../images/eggRightActive.svg');
+    
+                        }
                     }
                 }
             }
@@ -151,6 +153,7 @@
                     margin-bottom: 0.85rem;
                     border-radius: 7px;
                     font-family: "canada-type-gibson", sans-serif;
+                    font-weight: 600;
 
                     &.selected {
                         background: $yellow;
@@ -163,20 +166,24 @@
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 align-items: stretch;
-
+                max-width: 930px;
+                margin-top: 30px;
                 .ans {
                     width: 100%;
+                    height: 70px;
                     background: $white;
                     padding: 1rem 2rem;
                     margin-bottom: 0.85rem;
                     border-radius: 7px;
-                    max-width: 46%;
+                    max-width: 400px;
                     box-sizing: border-box;
-                    margin: 0.35rem;
+                    margin: 12px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     font-family: "canada-type-gibson", sans-serif;
+                    font-size: 1.5rem;
+                    font-weight: 600;
 
                     &.selected {
                         background: $yellow;
@@ -189,23 +196,32 @@
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 align-items: stretch;
-
+                margin-top: 30px;
                 .ans {
                     width: 100%;
                     background: $white;
-                    padding: 1rem 2rem;
+                    padding: 30px 24px;
                     margin-bottom: 0.85rem;
                     border-radius: 7px;
-                    max-width: 29%;
+                    max-width: 30%;
                     box-sizing: border-box;
-                    margin: 0.35rem;
+                    margin: 0.35rem 25px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     font-family: "canada-type-gibson", sans-serif;
-
+                    font-size: 1.75rem;
+                    font-weight: 600;
                     &.selected {
                         background: $yellow;
+                    }
+
+                    &:first-child{
+                        margin-left: 0;
+                    }
+
+                    &:last-child{
+                        margin-right: 0;
                     }
                 }
             }
@@ -213,6 +229,7 @@
             .or {
                 margin: 1rem;
                 color: $white;
+                font-size: 2.5rem;
             }
         }
     }

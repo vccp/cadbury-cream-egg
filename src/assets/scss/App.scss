@@ -69,6 +69,14 @@ h2 {
         font-size: 1.5rem;
         border: 0px solid $white;
         font-family: 'CremeEgg-CondensedBlack';
+        transition: all .15s linear;
+
+
+        &:hover {
+            scale: 1.05;
+            transition: all .15s linear;
+
+        }
     }
 }
 

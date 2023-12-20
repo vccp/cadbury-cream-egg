@@ -43,6 +43,7 @@
 .questionImage {
     width: 90%;
     border-radius: 10px;
+    margin: 35px 0 45px 0;
 
     @include respond-to("mobile") {
         width: 350px;

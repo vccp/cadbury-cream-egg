@@ -191,7 +191,7 @@ const Question = () => {
                 const matrix = quizRes.matrix[combinedCode];
                 if (answerForFirstResult) {
                     const matrixResults = [
-                        `You eat yours ${(answerForFirstResult.answer as QuizOption).option}. You're really out there`,
+                        `You eat yours ${(answerForFirstResult.answer as QuizOption).option}.`,
                         matrix['personalityLine'],
                          ...matrix['4xTraits'], 
                          ...matrix['2xReccomandations']
