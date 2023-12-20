@@ -152,7 +152,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                             id='checkbox1'
                                             name='checkbox1'
                                         />
-                                        <label htmlFor='checkbox1'>Option 1</label>
+                                        <label htmlFor='checkbox1'>T&Cs/privacy for competition (TBC on actual copy)</label>
                                     </div>
                                     <h4 className="text-white keepUpToDate">KEEP UP TO DATE</h4>
                                     <div className='checkbox'>
@@ -161,7 +161,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                             id='checkbox2'
                                             name='checkbox2'
                                         />
-                                        <label htmlFor='checkbox2'>Option 2</label>
+                                        <label htmlFor='checkbox2'>18+ tick box</label>
                                     </div>
                                     <div className='checkbox'>
                                         <input
@@ -169,7 +169,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                             id='checkbox3'
                                             name='checkbox3'
                                         />
-                                        <label htmlFor='checkbox3'>Option 3</label>
+                                        <label htmlFor='checkbox3'>Opt in for marketing comms (tick box)</label>
                                     </div>
                                 </div>
                                 <ReCAPTCHA ref={recaptcha} sitekey="6LeEFTYpAAAAABUAiiUqcthHc4yPbz9vyxeK_F6r" />
