@@ -2,17 +2,15 @@
 import Footer from './Footer';
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 import JourneyTracker from "../assets/images/JourneyTracker.svg?react";
-// import FacebookIcon from '../assets/images/facebook.svg?react'
+import FacebookIcon from '../assets/images/facebook.svg?react'
+import XIcon from '../assets/images/twitter.svg?react'
 import InstagramIcon from '../assets/images/instagram.svg?react'
 import TiktokIcon from '../assets/images/tiktok.svg?react'
 // import { useLocation } from 'react-router-dom';
 
-// import XIcon from '../assets/images/x.svg?react'
 import {
-    FacebookIcon,
     FacebookShareButton,
     TwitterShareButton,
-    XIcon
 } from "react-share";
 
 const InstagramShareButton = ({ className, shareUrl, caption }: { className: string, shareUrl: string, caption: string }) => {
@@ -63,7 +61,7 @@ const Share = ({ backgroundImage }: { backgroundImage: string }) => {
                             url={currentUrl}
                             className="socialIcon"
                         >
-                            <FacebookIcon className='facebookIcon' size={32} round />
+                            <FacebookIcon className='facebookIcon' />
                         </FacebookShareButton>
                     </div>
                     <div className="socialEgg">
@@ -80,7 +78,7 @@ const Share = ({ backgroundImage }: { backgroundImage: string }) => {
                             url={currentUrl}
                             className="socialIcon"
                         >
-                            <XIcon className='xIcon' size={32} round />
+                            <XIcon className='xIcon' />
                         </TwitterShareButton>
                     </div>
                     <div className="socialEgg">
