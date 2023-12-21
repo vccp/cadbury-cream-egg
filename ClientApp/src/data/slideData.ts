@@ -9,6 +9,7 @@ export const slideData = [
     {
         id: 2,
         backgroundImage: '../assets/images/BGResultEggUprightDesktop.svg',
+        imageUrl: '../assets/images/Egg-Landing.webp',
         backgroundColor: '#3B0073',
         color: '#FFDD00'
     },

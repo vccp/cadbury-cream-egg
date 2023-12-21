@@ -27,7 +27,9 @@ import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Answer, QuizItem, QuizOption, QuizResponse } from '../types/quizTypes';
 // import { useNavigate } from 'react-router-dom';
+// import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
+// gsap.registerPlugin(ScrollToPlugin);
 
 const timeline = gsap.timeline({
     paused: true
@@ -56,7 +58,9 @@ const Question = () => {
     const [answers, setAnswers] = useState<Answer[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    // let shouldRunEffect = true;
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [queId]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -84,7 +88,7 @@ const Question = () => {
                 setError(`Error fetching JSON data: ${(err as Error).message}`);
             }
         };
-
+        window.scrollTo(0, 0);
         fetchData();
     }, []);
 
@@ -146,6 +150,7 @@ const Question = () => {
             tl.current
                 .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
         }, app.current as Element | undefined);
+        
         tl.current.restart();
         return () => ctx.revert();
     }, [queId]);
@@ -179,8 +184,11 @@ const Question = () => {
                 }
             ]);
         }
-        if(nextBtnRef.current) nextBtnRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }) 
-    };
+        window.scrollTo({ 
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+        };
 
     const handleNext = () => {
         if (queId) {
@@ -201,7 +209,7 @@ const Question = () => {
                          ...matrix['4xTraits'], 
                          ...matrix['2xReccomandations']
                         ];
-                    navigate("/form", { state: { code: combinedCode, matrixResults } });
+                    navigate("/result", { state: { code: combinedCode, matrixResults } });
                 }
             }
         } else {
@@ -219,11 +227,11 @@ const Question = () => {
                 <div ref={quizMainBgRef} className="quiz-main__bg"></div>
                 {queId === "1" &&
                     <>
-                        <div className="quiz-bottom-left_bg">
+                        <div className="quiz-bottom-left_bg o-h h-100">
                             <BGQ1WavebottomDesktop className='desktop' />
                             <BGQ1WavebottomMobile className='mobile' />
                         </div>
-                        <div className="quiz-top-right_bg">
+                        <div className="quiz-top-right_bg o-h h-100">
                             <BGQ1WavetopDesktop className='desktop'/>
                             <BGQ1WavetopMobile className='mobile' />
                         </div>
@@ -231,13 +239,13 @@ const Question = () => {
                 }
                 {queId === "2" &&
                     <>
-                        <div className="quiz-bottom-left_bg">
-                            <BGQ2WaveBottomDesktop className='desktop'/>
-                            <BGQ2WaveBottomMobile className='mobile' />
+                        <div className="quiz-bottom-left_bg o-h h-100">
+                            <BGQ2WaveBottomDesktop className='desktop h-100'/>
+                            <BGQ2WaveBottomMobile className='mobile h-100' />
                         </div>
-                        <div className="quiz-top-right_bg">
-                            <BGQ2WaveTopDesktop className='desktop'/>
-                            <BGQ2WaveTopMobile className='mobile' />
+                        <div className="quiz-top-right_bg o-h h-100">
+                            <BGQ2WaveTopDesktop className='desktop h-100'/>
+                            <BGQ2WaveTopMobile className='mobile h-100' />
                         </div>
                     </>
                 }

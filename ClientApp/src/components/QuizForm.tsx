@@ -64,7 +64,7 @@ const QuizForm = () => {
         // } else if (!captchaValue) {
         //     alert("Please verify the reCAPTCHA!");
         } else {
-            navigate("/result", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
+            navigate("/form", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
         }
     };
 console.log(import.meta.env.VITE_APP_SITE_KEY);

@@ -144,7 +144,7 @@ nav {
             @include respond-to("mobile") {
                 flex-direction: column;
                 flex-wrap: wrap;
-                height: 120px;
+                height: 60px;
             }
 
             @include respond-to("tablet") {
@@ -182,4 +182,14 @@ nav {
 
 .flex-1 {
     flex: 1;
+}
+
+.h-100{
+    height: auto;
+    @include respond-to("tablet") {
+        height: 100%;
+    }
+}
+.o-h{
+    overflow: hidden;
 }
