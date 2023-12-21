@@ -60,11 +60,11 @@ const QuizForm = () => {
         e.preventDefault();
         // const captchaValue = recaptcha.current?.getValue();
         if (!validateForm()) {
-            alert('Form contains validation errors. Please check.');
+           // alert('Form contains validation errors. Please check.');
         // } else if (!captchaValue) {
         //     alert("Please verify the reCAPTCHA!");
         } else {
-            navigate("/form", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
+            navigate("/result", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
         }
     };
 console.log(import.meta.env.VITE_APP_SITE_KEY);
