@@ -209,7 +209,7 @@ const Question = () => {
                          ...matrix['4xTraits'], 
                          ...matrix['2xReccomandations']
                         ];
-                    navigate("/result", { state: { code: combinedCode, matrixResults } });
+                    navigate("/form", { state: { code: combinedCode, matrixResults } });
                 }
             }
         } else {
