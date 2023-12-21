@@ -51,6 +51,7 @@ const Question = () => {
     const quizMainQueRef = useRef<HTMLDivElement | null>(null);
     const questionImageRef = useRef<HTMLDivElement | null>(null);
     const quizMainAnsRef = useRef<HTMLDivElement | null>(null);
+    const nextBtnRef = useRef<HTMLButtonElement | null>(null)
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Answer[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -178,6 +179,7 @@ const Question = () => {
                 }
             ]);
         }
+        if(nextBtnRef.current) nextBtnRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }) 
     };
 
     const handleNext = () => {
@@ -194,7 +196,7 @@ const Question = () => {
                 const matrix = quizRes.matrix[combinedCode];
                 if (answerForFirstResult) {
                     const matrixResults = [
-                        `${(answerForFirstResult.answer as QuizOption).option}.`,
+                        `${(answerForFirstResult.answer as QuizOption).result}.`,
                         matrix['personalityLine'],
                          ...matrix['4xTraits'], 
                          ...matrix['2xReccomandations']
@@ -313,8 +315,7 @@ const Question = () => {
                                 </div>
                             }
 
-                            <button className='btn primary' onClick={handleNext}
-                                style={answers.some((a) => a.questionId === currentQuestion) ? { visibility: "visible", opacity: 1 } : { visibility: "hidden", opacity: 0 }}>
+                            <button ref={nextBtnRef} className='btn primary' onClick={handleNext}                                style={answers.some((a) => a.questionId === currentQuestion) ? { visibility: "visible", opacity: 1 } : { visibility: "hidden", opacity: 0 }}>
                                 Next
                             </button>
                         </div>

@@ -9,11 +9,22 @@
         font-size: 3.3rem;
         margin: 0 auto;
         margin-top: 130px;
+        text-shadow: none;
         @include respond-to("tablet") {
             font-size: 4.6vw;
         }
     }
+    .slide_9 {
 
+       .cadburyCreamLogoImage {
+        margin-top: 45px;
+        width: 125px;
+       }
+
+        h1 {
+            margin-top: 50px
+        }
+    }
     .slide_10 {
         h1 {
             margin-top: 0

@@ -9,6 +9,7 @@ interface Matrix {
 }
 
 export interface QuizOption  {
+    result?: string;
     code?: string;
     option: string;
 }

@@ -13,7 +13,6 @@
                     "option": "Absolutely not, what is wrong with you? That's 100% anti social behaviour. Ew. Awkward. Never."
                 }
             ],
-            "divider": "OR",
             "layout": "three_column",
             "multi_select": false
         },
@@ -43,28 +42,36 @@
             "question": "How do you eat yours?",
             "options": [
                 {
-                    "option": "You eat yours all in one go"
+                    "option": "All one in go",
+                    "result": "You eat yours all in one go"
                 },
                 {
-                    "option": "You eat yours in two mouthfuls"
+                    "option": "In two mouthfuls",
+                    "result": "You eat yours in two mouthfuls"
                 },
                 {
-                    "option": "You eat yours with a teaspoon"
+                    "option": "With a teaspoon",
+                    "result": "You eat yours with a teaspoon"
                 },
                 {
-                    "option": "You scoop the goo out with your finger"
+                    "option": "Scoop the goo out with your finger",
+                    "result": "You scoop the goo out with your finger"
                 },
                 {
-                    "option": "You suck out the goo like an oyster"
+                    "option": "Suck out the goo like an oyster",
+                    "result": "You suck out the goo like an oyster"
                 },
                 {
-                    "option": "You save half for later"
+                    "option": "Save half for later",
+                    "result": "You save half for later"
                 },
                 {
-                    "option": "You eat yours in small nibbles"
+                    "option": "In small nibbles",
+                    "result": "You eat yours in small nibbles"
                 },
                 {
-                    "option": "You eat yours melted on toast"
+                    "option": "Melted on toast",
+                    "result": "You eat yours melted on toast"
                 }
             ],
             "layout": "two_column",
@@ -161,8 +168,8 @@
                 "YOU THRIVE ON TEAM BUILDING AWAY DAYS"
             ],
             "2xReccomandations": [
-                "YOU SHOULD LISTEN TO ANY SONG WITH A DANCE ROUTINE",
-                "YOU SHOULD BUILD A #SHEDQUARTERS WITH POWER TOOLS"
+                "YOU SHOULD BOOKMARK PINTEREST BOARDS FOR #SHEDQUARTERS TRANSFORMATIONS",
+                "YOU SHOULD RETRAIN AS A VENTRILOQUIST WITH A PUPPET OF YOURSELF"
             ]
         },
         "INTP": {
@@ -203,8 +210,8 @@
                 "YOU LIKE POEMS THAT DON’T RHYME"
             ],
             "2xReccomandations": [
-                "YOU WOULD ENJOY CAGE DIVING WITH A LOCAL YOU JUST MET",
-                "YOU SHOULD BE A POTTER THAT SPECIALIZES IN FOOT CASTING"
+                "YOU SHOULD BE A POTTER THAT SPECIALISES IN FOOT CASTING",
+                "YOU SHOULD BOOKMARK PINTEREST BOARDS FOR BABIES THAT LOOK LIKE MIDDLE-AGED MEN"
             ]
         },
         "INFJ": {
@@ -288,7 +295,7 @@
             ],
             "2xReccomandations": [
                 "YOU SHOULD LISTEN TO WHITE NOISE AND SCREAMO METAL MUSIC",
-                "YOU SHOULD GO ON A WORK SKI TRIP, MINUS THE APRES"
+                "YOU SHOULD BECOME AN ESCAPE ROOM CONSULTANT"
             ]
         },
         "ENFP": {

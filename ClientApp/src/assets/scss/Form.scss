@@ -1,6 +1,13 @@
 .quizForm {
     background-color: $purple;
 
+    h1, h2 {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .quizForm-section {
         justify-content: flex-start;
     }
@@ -21,6 +28,10 @@
                 display: block;
                 margin-bottom: 5px;
                 color: $white;
+                margin-top: 20px;
+                @include respond-to("tablet") {
+                    font-size: 1.5rem
+                }
             }
 
             input[type="text"],
@@ -41,7 +52,8 @@
         }
     }
     .keepUpToDate{
-        margin: 0.5rem 0;
+        margin: 15px 0;
+        font-size: 1rem;
     }
 }
 
@@ -72,6 +84,10 @@
 
         label {
             cursor: pointer;
+                font-size: 0.75rem !important;
+                font-family: "canada-type-gibson";
+                margin-top: 5px !important;
+
         }
     }
 }

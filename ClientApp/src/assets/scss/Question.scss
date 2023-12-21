@@ -8,6 +8,7 @@
     overflow: hidden;
     min-height: 100vh;
     padding: 0;
+    background-color: $purple;
     @include respond-to("tablet") {
         padding: 0;
     }
@@ -16,6 +17,21 @@
     &.que_1 {
         .ansMain {
             width: 100%;
+        }
+    }
+
+    &.que_4 {
+        .quiz-egg-repeat_bg{
+            height: 100vh !important;
+           // position: relative;
+           // display: block;
+        }
+    }
+
+    &.que_2 {
+        @include respond-to("tablet") {
+            top: 75px;
+            position: relative;
         }
     }
 
@@ -349,12 +365,12 @@
     display: none;
 }
 .mobile{
-    display: block;
+    display: flex;
 }
 
 @include respond-to("tablet") {
     .desktop{
-        display: block;
+        display: flex;
     }
     .mobile{
         display: none;

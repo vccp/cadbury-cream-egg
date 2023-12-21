@@ -14,10 +14,14 @@
     }
 
     .card {
-        width: 300px;
+        width: 90%;
         margin-top: 2rem;
         margin-bottom: 2rem;
         text-align: left;
+
+        @include respond-to("mobile") {
+            width: 300px;
+        }
 
         .cardLink {
             text-decoration: none;
