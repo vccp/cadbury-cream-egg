@@ -13,7 +13,16 @@
     }
     // pointer-events: none;
 
-    
+    .ans {
+        transition: all .15s linear;
+
+        &:hover {
+            scale: 1.05;
+            transition: all .15s linear;
+            background-color: $yellow !important
+        }
+    }
+
     &.que_1 {
         .ansMain {
             width: 100%;

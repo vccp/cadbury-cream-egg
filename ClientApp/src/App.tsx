@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Question from './components/Question';
 import Result from './components/Result';
 import QuizForm from './components/QuizForm';
+import CookiePolicy from './components/CookiePolicy';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/form",
     element: <QuizForm />,
+  },
+  {
+    path: "/cookiepolicy",
+    element: <CookiePolicy />,
   }
 ]);
 

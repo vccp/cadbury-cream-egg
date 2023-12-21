@@ -7,11 +7,15 @@ import XIcon from '../assets/images/twitter.svg?react'
 import InstagramIcon from '../assets/images/instagram.svg?react'
 import TiktokIcon from '../assets/images/tiktok.svg?react'
 // import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
     FacebookShareButton,
     TwitterShareButton,
 } from "react-share";
+
+
 
 const InstagramShareButton = ({ className, shareUrl, caption }: { className: string, shareUrl: string, caption: string }) => {
     const handleInstagramShare = () => {
@@ -43,6 +47,17 @@ const Share = ({ backgroundImage }: { backgroundImage: string }) => {
     // const location = useLocation();
     // const navigate = useNavigate();
     const currentUrl = window.location.origin;
+    
+    const navigate = useNavigate();
+    const [isQueOpen, setIsQue] = useState(false);
+
+    const handleTakeQuizClick = () => {
+        if (isQueOpen === false) {
+            navigate("/");
+            setIsQue(true);
+        }
+    };
+    
 
     return (
         <div className={`share primary-screen`}
@@ -89,7 +104,7 @@ const Share = ({ backgroundImage }: { backgroundImage: string }) => {
                     </div>
                 </div>
                 <div className='orSeparator'>OR</div>
-                <button className='btn primary'>
+                <button className='btn primary'  onClick={handleTakeQuizClick}>
                     PLAY AGAIN
                 </button>
             </section>
