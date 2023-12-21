@@ -6,12 +6,50 @@
     min-height: 100%;
 
     h1 {
-        font-size: 3.3rem;
+        font-size: 2.8rem;
         margin: 0 auto;
-        margin-top: 130px;
+        margin-top: 200px;
         text-shadow: none;
+        max-width: 100%;
+        padding: 0 15px;
         @include respond-to("tablet") {
             font-size: 4.6vw;
+            margin-top: 130px;
+        }
+    }
+
+    .slide_3, .slide_4, .slide_5, .slide_6, .slide_7, .slide_8 {
+        h1 {
+            margin-top: 200px;
+            @include respond-to("tablet") {
+                margin-top: 130px;
+            }
+        }
+
+        .imgWrapper {
+            position: absolute;
+            bottom: 0px;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            @include respond-to("tablet") {
+                position: relative;
+                transform: none;
+                left: 0;
+            }
+        }
+    }
+
+    .slide_1, .slide_2 {
+        .imgWrapper {
+            position: absolute;
+            bottom: 0px;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            @include respond-to("tablet") {
+                position: relative;
+                transform: none;
+                left: 0;
+            }
         }
     }
     .slide_9 {
@@ -49,10 +87,7 @@
         // }
 
         .resultSlideInner {
-            display: flex;
-         justify-content: space-between;
-            align-items: center;
-            flex-direction: column;
+            display: block;
             height: 100%;
             width: 100%;
             background-repeat: no-repeat;
@@ -62,6 +97,10 @@
             @include respond-to("tablet") {
                 background-size: 100% 100%;
                 background-position: center center;
+                display: flex;
+         justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
             }
         }
 

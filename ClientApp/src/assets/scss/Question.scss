@@ -13,9 +13,19 @@
     }
     // pointer-events: none;
 
+    
     &.que_1 {
         .ansMain {
             width: 100%;
+        }
+    }
+
+    &.que_2 {
+        .quiz-bottom-left_bg {
+            svg.mobile {
+                right: 50px;
+                position: relative;
+            }
         }
     }
 
@@ -349,8 +359,10 @@
 .quiz-full-wave_bg{
     position: absolute;
     width: 100%;
+    top: -80px;
     svg{
         width: 100%;
+        top: 0;
     }
 }
 
