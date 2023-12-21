@@ -7,7 +7,7 @@ import XIcon from '../assets/images/twitter.svg?react'
 import InstagramIcon from '../assets/images/instagram.svg?react'
 import TiktokIcon from '../assets/images/tiktok.svg?react'
 // import { useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
