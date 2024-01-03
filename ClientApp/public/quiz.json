@@ -5,11 +5,11 @@
             "question": "Do you like to enjoy your<br/> creme egg in public?",
             "options": [
                 {
-                    "code": "I",
+                    "code": "E",
                     "option": "Yes. Yes I do."
                 },
                 {
-                    "code": "E",
+                    "code": "I",
                     "option": "Absolutely not, what is wrong with you? That's 100% anti social behaviour. Ew. Awkward. Never."
                 }
             ],
