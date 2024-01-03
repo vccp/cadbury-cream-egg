@@ -79,7 +79,7 @@
         },
         {
             "id": 4,
-            "question": "THERE’S ONE CREME EGG LEFT IN THE<br/> SHOP. YOU AND YOUR FRIEND REALLY<br/> WANT IT. WHAT DO YOU DO?",
+            "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP. <br/>YOU AND YOUR FRIEND REALLY WANT IT. <br/>WHAT DO YOU DO?",
             "options": [
                 {
                     "code": "T",
@@ -87,7 +87,7 @@
                 },
                 {
                     "code": "F",
-                    "option": "Give it to your friend.<br/> You know how muc<br/> they want it."
+                    "option": "Give it to your friend.<br/> You know how much<br/> they want it."
                 },
                 {
                     "code": "T",
