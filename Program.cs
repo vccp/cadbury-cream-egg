@@ -21,9 +21,14 @@ public class Program
             x.EnableForHttps = true;
         });
         builder.Services.AddResponseCaching();
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddTransient<IMarketIdentifier, DomainTldMarketIdentifier>();
+        builder.Services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
 
         builder.Services.AddEndpointsApiExplorer();
+        #if DEBUG
         builder.Services.AddOpenApiDocument();
+        #endif
 
         var app = builder.Build();
 
@@ -51,7 +56,7 @@ public class Program
             }
         });
 
-        app.MapPost("/api/submit", HandleSubmit);
+        app.MapEntity<Entry>();
 
         app.MapFallbackToFile("index.html");
 
@@ -60,29 +65,33 @@ public class Program
         await app.RunAsync();
     }
 
-    private static async Task<IResult> HandleSubmit(
-            HttpContext context,
-            [FromServices] ApplicationDbContext db,
-            [FromBody] ValidatedEntry entry)
+}
+
+public static class WebApplicationSubmissionExtensions
+{
+    public static RouteHandlerBuilder MapEntity<T>(this WebApplication app, string? path = null) where T : EntityBase
     {
-        entry.Market = context.Request.Host.Host.EndsWith(".ie", StringComparison.InvariantCultureIgnoreCase) ? 2 : 1; // Horrible, but it works.
+        // Get
+        // PATCH
+        // DELETE
+        return app.MapPost(path ?? $"/api/{typeof(T).Name}", HandleSubmit<T>);
+    }
+    private static async Task<IResult> HandleSubmit<T>(
+            HttpContext context,
+            [FromServices] IMarketIdentifier market,
+            [FromServices] IRepository<T> db,
+            [FromBody] T entry) where T : EntityBase
+    {
+        entry.Market = market.GetMarket();
 
-        var validation = await MiniValidator.TryValidateAsync(entry, context.RequestServices);
-        if (!validation.IsValid)
+        var (isValid, errors) = await MiniValidator.TryValidateAsync(entry, context.RequestServices, true);
+        if (!isValid)
         {
-            return Results.ValidationProblem(validation.Errors);
+            return Results.ValidationProblem(errors);
         }
 
-        try
-        {
-            await db.Entries.AddAsync(entry);
-            await db.SaveChangesAsync();
-            return Results.Created();
-        }
-        catch
-        {
-            return Results.StatusCode(StatusCodes.Status500InternalServerError);
-        }
+        await db.AddAsync(entry);
+        return Results.Created();
 
     }
 }
