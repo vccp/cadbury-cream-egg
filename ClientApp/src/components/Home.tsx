@@ -24,7 +24,7 @@ const Home: React.FC = () => {
                 <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                 <img className='cadburyTornImage' src={Cadbury_Torn_in_Half_R3_Simp} alt="" />
                 <h1 className="main-heading text-yellow">THE WAY YOU EAT A <br />CREME EGG SAYS <br />EVERYTHING ABOUT YOU</h1>
-                <h2 className="secondary-heading text-white">FIND OUT WHO YOU REALY ARE</h2>
+                <h2 className="secondary-heading text-white">FIND OUT WHO YOU REALLY ARE</h2>
                 <button className='btn primary' onClick={handleTakeQuizClick}>
                     TAKE QUIZ
                 </button>

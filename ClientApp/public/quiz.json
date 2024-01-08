@@ -5,11 +5,11 @@
             "question": "Do you like to enjoy your<br/> creme egg in public?",
             "options": [
                 {
-                    "code": "I",
-                    "option": "Yes."
+                    "code": "E",
+                    "option": "Yes. Yes I do."
                 },
                 {
-                    "code": "E",
+                    "code": "I",
                     "option": "Absolutely not, what is wrong with you? That's 100% anti social behaviour. Ew. Awkward. Never."
                 }
             ],
@@ -79,7 +79,7 @@
         },
         {
             "id": 4,
-            "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP.<br/> YOU AND YOUR FRIEND REALLY WANT IT.<br/> WHAT DO YOU DO?",
+            "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP. <br/>YOU AND YOUR FRIEND REALLY WANT IT. <br/>WHAT DO YOU DO?",
             "options": [
                 {
                     "code": "T",
@@ -87,7 +87,7 @@
                 },
                 {
                     "code": "F",
-                    "option": "Give it to your friend.<br/> You know how muc<br/> they want it."
+                    "option": "Give it to your friend.<br/> You know how much<br/> they want it."
                 },
                 {
                     "code": "T",

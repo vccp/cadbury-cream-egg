@@ -21,7 +21,7 @@ public class Program
             x.EnableForHttps = true;
         });
         builder.Services.AddResponseCaching();
-        
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddOpenApiDocument();
 
@@ -44,7 +44,10 @@ public class Program
         {
             OnPrepareResponse = ctx =>
             {
-                ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=604800");
+                if (app.Environment.IsProduction())
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=604800");
+                }
             }
         });
 
