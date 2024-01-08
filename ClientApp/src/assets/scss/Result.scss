@@ -64,6 +64,7 @@
             max-width: 100%;
             width: 100%;
             margin-bottom: 0;
+            border-top: 2px solid white;
             @include respond-to("tablet") {
                 position: relative;
                 transform: none;
@@ -78,6 +79,11 @@
             bottom: 0px;
             transform: translate(-50%, -50%);
             left: 50%;
+            max-width: 100%;
+            width: 100%;
+            margin-bottom: 0;
+            border-top: 2px solid white;
+            background-color: $purple;
             @include respond-to("tablet") {
                 position: relative;
                 transform: none;

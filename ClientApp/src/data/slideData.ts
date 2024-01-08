@@ -1,7 +1,7 @@
 export const slideData = [
     {
         id: 1,
-        backgroundImage: '../assets/images/BackgroundPurpleDesktop.svg',
+        backgroundImage: '../assets/images/BackgroundPurpleDesktop.webp',
         imageUrl: '../assets/images/Egg-Landing.webp',
         backgroundColor: '#3B0073',
         color: '#FFDD00'
