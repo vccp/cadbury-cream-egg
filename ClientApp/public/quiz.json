@@ -6,7 +6,7 @@
             "options": [
                 {
                     "code": "I",
-                    "option": "Yes. Yes I do."
+                    "option": "Yes."
                 },
                 {
                     "code": "E",
@@ -79,7 +79,7 @@
         },
         {
             "id": 4,
-            "question": "THERE’S ONE CREME EGG LEFT IN THE<br/> SHOP. YOU AND YOUR FRIEND REALLY<br/> WANT IT. WHAT DO YOU DO?",
+            "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP.<br/> YOU AND YOUR FRIEND REALLY WANT IT.<br/> WHAT DO YOU DO?",
             "options": [
                 {
                     "code": "T",
@@ -177,8 +177,8 @@
             "type": "Logician",
             "4xTraits": [
                 "YOU SAY STUFF ‘HOW IT IS",
-                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO.",
-                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE.",
+                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO",
+                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE",
                 "YOU COULD SOLVE A RUBIK’S CUBE."
             ],
             "2xReccomandations": [
@@ -289,9 +289,9 @@
             "type": "Logistician",
             "4xTraits": [
                 "YOU SAY STUFF ‘HOW IT IS’",
-                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO.",
-                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE.",
-                "YOU COULD SOLVE A RUBIK’S CUBE."
+                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO",
+                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE",
+                "YOU COULD SOLVE A RUBIK’S CUBE"
             ],
             "2xReccomandations": [
                 "YOU SHOULD LISTEN TO WHITE NOISE AND SCREAMO METAL MUSIC",
@@ -303,9 +303,9 @@
             "type": "Campaigner",
             "4xTraits": [
                 "WHEN PEOPLE ASK IF YOU TAKE SUGAR, YOU SAY ‘NO THANKS, I’M SWEET ENOUGH’",
-                "YOU KNOW WHAT PEOPLE WOULD LIKE FOR THEIR BIRTHDAY.",
-                "YOU SAY YOU’RE ON YOUR WAY AS YOU’RE GETTING IN THE SHOWER.",
-                "YOU SIGN UP FOR MARATHONS AND BACK OUT AT THE LAST MINUTE."
+                "YOU KNOW WHAT PEOPLE WOULD LIKE FOR THEIR BIRTHDAY",
+                "YOU SAY YOU’RE ON YOUR WAY AS YOU’RE GETTING IN THE SHOWER",
+                "YOU SIGN UP FOR MARATHONS AND BACK OUT AT THE LAST MINUTE"
             ],
             "2xReccomandations": [
                 "YOU SHOULD LISTEN TO HIMALAYAN THROAT SINGING",
@@ -330,9 +330,9 @@
             "personalityLine": "YOU THRIVE IN CHAOS",
             "type": "Entrepreneur",
             "4xTraits": [
-                "YOU'VE BEEN ON ‘HOLIDAY’ TO A JUNGLE.",
-                "YOU'VE PROVEN YOUR OLD TEACHER WRONG. TWICE.",
-                "YOU IDENTIFY WITH THE LONE WOLF HERO IN ACTION MOVIES.",
+                "YOU'VE BEEN ON ‘HOLIDAY’ TO A JUNGLE",
+                "YOU'VE PROVEN YOUR OLD TEACHER WRONG. TWICE",
+                "YOU IDENTIFY WITH THE LONE WOLF HERO IN ACTION MOVIES",
                 "YOU WRITE IN FELT TIP"
             ],
             "2xReccomandations": [

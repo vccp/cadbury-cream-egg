@@ -1,14 +1,14 @@
 export const slideData = [
     {
         id: 1,
-        backgroundImage: '../assets/images/BGResultEggUprightDesktop.svg',
+        backgroundImage: '../assets/images/BackgroundPurpleDesktop.svg',
         imageUrl: '../assets/images/Egg-Landing.webp',
         backgroundColor: '#3B0073',
         color: '#FFDD00'
     },
     {
         id: 2,
-        backgroundImage: '../assets/images/BGResultEggUprightDesktop.svg',
+        backgroundImage: '../assets/images/BackgroundPurpleDesktop.webp',
         imageUrl: '../assets/images/Egg-Landing.webp',
         backgroundColor: '#3B0073',
         color: '#FFDD00'
@@ -39,9 +39,9 @@ export const slideData = [
     },
     {
         id: 7,
-        backgroundImage: '../assets/images/BackgroundYellowDesktop.webp',
+        backgroundImage: '../assets/images/BackgroundRedDesktop.webp',
         backgroundColor: '#FFDD00',
-        color: '#3B0073'
+        color: '#FFDD00'
     },
     {
         id: 8,

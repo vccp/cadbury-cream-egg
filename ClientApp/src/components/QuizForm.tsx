@@ -81,8 +81,8 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                 <div className="quiz-main__items">
                     <div className="que-form-container">
                         <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
-                        <h1 className="main-heading text-yellow">WIN WIN WIN</h1>
-                        <h2 className="secondary-heading text-white">ENTER TO WIN</h2>
+                        <h1 className="main-heading text-yellow">WIN YOUR DREAM PRIZE!</h1>
+                        <h2 className="secondary-heading text-white">ENTER TO WIN THE PERFECT PRIZE<br/> FOR WHO YOU REALLY ARE</h2>
                         <div className="quiz-form-wrapper">
                             <form onSubmit={handleSubmit}>
                                 <div className='formGroup'>
@@ -152,7 +152,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                             id='checkbox1'
                                             name='checkbox1'
                                         />
-                                        <label htmlFor='checkbox1'>T&Cs/privacy for competition (TBC on actual copy)</label>
+                                        <label htmlFor='checkbox1'>Tick for the chance to win a prize</label>
                                     </div>
                                     <h4 className="text-white keepUpToDate">KEEP UP TO DATE</h4>
                                     <div className='checkbox'>

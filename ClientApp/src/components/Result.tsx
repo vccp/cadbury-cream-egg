@@ -7,7 +7,7 @@ import JourneyTracker from "../assets/images/JourneyTracker.svg?react";
 // import BGResultEggUprightDesktop from "../assets/images/BGResultEggUprightDesktop.svg?react";
 // import BGResultEggUprightMobile from "../assets/images/BGResultEggUprightMobile.svg?react";
 
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import Share from './Share';
 import Final from './Final';
 import { useLocation } from 'react-router-dom';
@@ -48,6 +48,10 @@ const Result = () => {
                 <Swiper
                     onSlideChange={handleSlideChange}
                     autoHeight={true}
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                      }}
                     pagination={{
                         clickable: true,
                         el: '.swiper-pagination-custom',
@@ -59,7 +63,7 @@ const Result = () => {
                             }
                         }
                     }}
-                    modules={[Pagination]}
+                    modules={[Autoplay, Pagination]}
                     style={{
                         '--swiper-pagination-bullet-inactive-color': slideData[activeIndex]?.color || '#FFDD00',
                     } as React.CSSProperties}>
