@@ -1,6 +1,10 @@
 export interface QuizFormData {
-  firstName: string;
-  surname: string;
-  email: string;
+  RecaptchaResponse: string;
+  FirstName: string;
+  LastName: string;
+  Email: string;
   confirmEmail: string;
+  Answers: string;
+  TermsAndConditions: boolean;
+  OptIn: boolean;
 }
