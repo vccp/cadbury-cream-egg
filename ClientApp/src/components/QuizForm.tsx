@@ -26,6 +26,8 @@ const timeline = gsap.timeline({
 const controller = new AbortController();
 const signal = controller.signal;
 
+const baseUrl = "https://cadburycremeeggquiz-dev.azurewebsites.net";
+
 const QuizForm = () => {
     const navigate = useNavigate();
     const tl = useRef(timeline);
@@ -88,11 +90,18 @@ const QuizForm = () => {
     }, []);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setQuizFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+        const { name, value, type, checked } = e.target;
+        if (type === 'checkbox') {
+            setQuizFormData((prevData) => ({
+                ...prevData,
+                [name]: checked,
+            }));
+        } else {
+            setQuizFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
+        }
     };
 
     const validateForm = () => {
@@ -130,11 +139,11 @@ const QuizForm = () => {
             alert("Please verify the reCAPTCHA!");
         } else {
             const formData: QuizFormData = quizFormData;
-            formData.Answers = answers.map((ans)=>{
+            formData.Answers = answers.map((ans) => {
                 return (ans.answer && !Array.isArray(ans.answer) && ans.answer.id) ? ans.answer.id : ''
             }).join('')
             const validatedEntry: ValidatedEntry = ValidatedEntry.fromJS(formData);
-            const response = await new Client().postApiSubmit(validatedEntry, signal);
+            const response = await new Client(baseUrl).postApiSubmit(validatedEntry, signal);
             if (response.status == 200) {
                 console.log("success");
                 setLocalStorageValue("answers", []);
@@ -162,8 +171,8 @@ const QuizForm = () => {
                         <div ref={creamLogoRef}>
                             <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                         </div>
-                        <h1 ref={mainHeadingRef} className="main-heading text-yellow">Time to find out who<br/> you really are!</h1>
-                        <h2 ref={secondaryHeadingRef} className="secondary-heading text-white">Enter your details below and you might<br/> just win the perfect prize for you!</h2>
+                        <h1 ref={mainHeadingRef} className="main-heading text-yellow">Time to find out who<br /> you really are!</h1>
+                        <h2 ref={secondaryHeadingRef} className="secondary-heading text-white">Enter your details below and you might<br /> just win the perfect prize for you!</h2>
                         <div ref={formWrapperRef} className="quiz-form-wrapper">
                             <form onSubmit={handleSubmit}>
                                 <div className='formGroup'>
@@ -232,6 +241,8 @@ const QuizForm = () => {
                                             type='checkbox'
                                             id='termsAndConditions'
                                             name='TermsAndConditions'
+                                            checked={quizFormData.TermsAndConditions}
+                                            onChange={handleInputChange}
                                         />
                                         <label htmlFor='termsAndConditions'>I have read and agree to the T&Cs for prize entry</label>
                                     </div>
@@ -241,6 +252,8 @@ const QuizForm = () => {
                                             type='checkbox'
                                             id='checkbox2'
                                             name='checkbox2'
+                                            checked={quizFormData.OptIn}
+                                            onChange={handleInputChange}
                                         />
                                         <label htmlFor='checkbox2'>18+ tick box</label>
                                     </div>
