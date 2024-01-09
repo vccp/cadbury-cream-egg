@@ -27,4 +27,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: ${{ matrix.action }}
-        run: dotnet ${{ matrix.action }} -c ${{ matrix.configuration }} -o dist --runtime win-x64
+        run: dotnet ${{ matrix.action }} -c ${{ matrix.configuration }}
