@@ -73,13 +73,9 @@ const Question = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const hostname = window.location.hostname;
-                const tld = hostname.split('.').pop();
-
+                let marketOverride = new URLSearchParams(window.location.search).get('_mo') ?? window.location.hostname.split('.').pop();
                 let jsonPath = '../quiz.json';
-                if (tld === 'com') {
-                    jsonPath = '../quiz_com.json'
-                } else if (tld === 'ie') {
+                if (marketOverride === 'ie') {
                     jsonPath = '../quiz_ie.json';
                 }
 
