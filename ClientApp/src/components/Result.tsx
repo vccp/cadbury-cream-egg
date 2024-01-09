@@ -50,10 +50,12 @@ const Result = () => {
                 <Swiper
                     onSlideChange={handleSlideChange}
                     autoHeight={true}
+                    allowTouchMove={true}
                     autoplay={{
                         delay: 5000,
-                        disableOnInteraction: false,
-                      }}
+                        disableOnInteraction: true,
+                        stopOnLastSlide: true
+                    }}
                     pagination={{
                         clickable: true,
                         el: '.swiper-pagination-custom',

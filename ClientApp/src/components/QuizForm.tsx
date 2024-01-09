@@ -12,15 +12,19 @@ import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 // import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from 'react-router';
-import { setLocalStorageValue } from '../utils/useLocalStorage';
+import { getLocalStorageValue, setLocalStorageValue } from '../utils/useLocalStorage';
+import { Client, ValidatedEntry } from '../server/ServerSide';
+import { Answer } from '../types/quizTypes';
 // import { MatrixState } from '../types/resultTypes';
-// import { getLocalStorageValue } from '../utils/useLocalStorage';
 
 gsap.registerPlugin(ScrollToPlugin)
 
 const timeline = gsap.timeline({
     paused: true
 });
+
+const controller = new AbortController();
+const signal = controller.signal;
 
 const QuizForm = () => {
     const navigate = useNavigate();
@@ -38,11 +42,17 @@ const QuizForm = () => {
     const secondaryHeadingRef = useRef<HTMLDivElement | null>(null);
     const formWrapperRef = useRef<HTMLDivElement | null>(null);
 
-    const [formData, setQuizFormData] = useState<QuizFormData>({
-        firstName: '',
-        surname: '',
-        email: '',
+    const answers = getLocalStorageValue<Answer[]>("answers", []);
+
+    const [quizFormData, setQuizFormData] = useState<QuizFormData>({
+        RecaptchaResponse: '',
+        FirstName: '',
+        LastName: '',
+        Email: '',
         confirmEmail: '',
+        Answers: '',
+        TermsAndConditions: false,
+        OptIn: false,
     });
 
     const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
@@ -88,21 +98,21 @@ const QuizForm = () => {
     const validateForm = () => {
         const errors: Record<string, string> = {};
 
-        if (!formData.firstName.trim()) {
+        if (!quizFormData.FirstName.trim()) {
             errors.firstName = 'First Name is required';
         }
 
-        if (!formData.surname.trim()) {
+        if (!quizFormData.LastName.trim()) {
             errors.surname = 'Surname is required';
         }
 
-        if (!formData.email.trim()) {
+        if (!quizFormData.Email.trim()) {
             errors.email = 'Email Address is required';
         }
 
-        if (!formData.confirmEmail.trim()) {
+        if (!quizFormData.confirmEmail.trim()) {
             errors.confirmEmail = 'Confirm Email Address is required';
-        } else if (formData.email !== formData.confirmEmail) {
+        } else if (quizFormData.Email !== quizFormData.confirmEmail) {
             errors.confirmEmail = 'Email addresses do not match';
         }
 
@@ -111,16 +121,27 @@ const QuizForm = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        // const captchaValue = recaptcha.current?.getValue();
+        const captchaValue = recaptcha.current?.getValue();
         if (!validateForm()) {
             alert('Form contains validation errors. Please check.');
-            // } else if (!captchaValue) {
-            //     alert("Please verify the reCAPTCHA!");
+        } else if (!captchaValue) {
+            alert("Please verify the reCAPTCHA!");
         } else {
-            setLocalStorageValue("answers", []);
-            navigate("/result");
+            const formData: QuizFormData = quizFormData;
+            formData.Answers = answers.map((ans)=>{
+                return (ans.answer && !Array.isArray(ans.answer) && ans.answer.id) ? ans.answer.id : ''
+            }).join('')
+            const validatedEntry: ValidatedEntry = ValidatedEntry.fromJS(formData);
+            const response = await new Client().postApiSubmit(validatedEntry, signal);
+            if (response.status == 200) {
+                console.log("success");
+                setLocalStorageValue("answers", []);
+                navigate("/result");
+            } else {
+                console.log("error");
+            }
         }
     };
 
@@ -150,9 +171,9 @@ const QuizForm = () => {
                                     <input
                                         type="text"
                                         id="firstName"
-                                        name="firstName"
+                                        name="FirstName"
                                         placeholder="First Name"
-                                        value={formData.firstName}
+                                        value={quizFormData.FirstName}
                                         onChange={handleInputChange}
                                         required
                                     />
@@ -165,9 +186,9 @@ const QuizForm = () => {
                                     <input
                                         type="text"
                                         id="surname"
-                                        name="surname"
+                                        name="LastName"
                                         placeholder="Surname"
-                                        value={formData.surname}
+                                        value={quizFormData.LastName}
                                         onChange={handleInputChange}
                                         required
                                     />
@@ -180,9 +201,9 @@ const QuizForm = () => {
                                     <input
                                         type="email"
                                         id="email"
-                                        name="email"
+                                        name="Email"
                                         placeholder="Email"
-                                        value={formData.email}
+                                        value={quizFormData.Email}
                                         onChange={handleInputChange}
                                         required
                                     />
@@ -197,7 +218,7 @@ const QuizForm = () => {
                                         id="confirmEmail"
                                         name="confirmEmail"
                                         placeholder="Confirm Email"
-                                        value={formData.confirmEmail}
+                                        value={quizFormData.confirmEmail}
                                         onChange={handleInputChange}
                                         required
                                     />
@@ -209,10 +230,10 @@ const QuizForm = () => {
                                     <div className='checkbox'>
                                         <input
                                             type='checkbox'
-                                            id='checkbox1'
-                                            name='checkbox1'
+                                            id='termsAndConditions'
+                                            name='TermsAndConditions'
                                         />
-                                        <label htmlFor='checkbox1'>I have read and agree to the T&Cs for prize entry</label>
+                                        <label htmlFor='termsAndConditions'>I have read and agree to the T&Cs for prize entry</label>
                                     </div>
                                     <h4 className="text-white keepUpToDate">KEEP UP TO DATE</h4>
                                     <div className='checkbox'>
@@ -226,10 +247,10 @@ const QuizForm = () => {
                                     <div className='checkbox'>
                                         <input
                                             type='checkbox'
-                                            id='checkbox3'
-                                            name='checkbox3'
+                                            id='optIn'
+                                            name='OptIn'
                                         />
-                                        <label htmlFor='checkbox3'>Opt in for marketing comms (tick box)</label>
+                                        <label htmlFor='optIn'>Opt in for marketing comms (tick box)</label>
                                     </div>
                                 </div>
                                 <div className='formGroup'>
