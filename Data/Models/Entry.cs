@@ -4,20 +4,16 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
-
 [Index(nameof(OptIn))]
 [Index(nameof(Answers))]
-[Index(nameof(Market), nameof(Email))]
+[Index(nameof(Market), nameof(Email), IsUnique = true)]
 [Index(nameof(Market))]
-public class Entry
+public class Entry : EntityBase
 {
-    [Key, JsonIgnore]
-    public int Id { get; set; }
-
     [NotMapped, Required]
     public string RecaptchaResponse { get; set; }
 
-    [Required, EmailAddress, MaxLength(128)]
+    [Required, EmailAddress, MaxLength(128), UniqueBy<Entry>(nameof(Email), nameof(Market))]
     public string Email { get; set; }
     [Required, MaxLength(64)]
     public string FirstName { get; set; }
@@ -30,11 +26,18 @@ public class Entry
 
     [Required, AllowedValues(true)]
     public bool TermsAndConditions { get; set; }
+    [Required]
     public bool OptIn { get; set; }
+}
 
+
+public class EntityBase
+{
+    [Key, JsonIgnore]
+    public int Id { get; set; }
     [JsonIgnore]
     public DateTimeOffset CreationsDate { get; set; }
     [JsonIgnore]
-    public int Market { get; set; }
+    public Market Market { get; set; }
+
 }
-#nullable restore

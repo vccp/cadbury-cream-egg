@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Cadbury.CremeEgg.Quiz.Data;
-using Microsoft.AspNetCore.Mvc;
 using AspNetCore.ReCaptcha;
-using MiniValidation;
 
 namespace Cadbury.CremeEgg.Quiz;
-
 public class Program
 {
     public static async Task Main(string[] args)
@@ -13,7 +10,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            if (!builder.Environment.IsLocal())
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                return;
+            }
+#if DEBUG
+            options.UseSqlite("local.sqlite3");
+#endif
         });
         builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
         builder.Services.AddResponseCompression(x =>
@@ -21,9 +25,14 @@ public class Program
             x.EnableForHttps = true;
         });
         builder.Services.AddResponseCaching();
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddTransient<IMarketIdentifier, DomainTldMarketIdentifier>();
+        builder.Services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
 
+#if DEBUG
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddOpenApiDocument();
+#endif
 
         var app = builder.Build();
 
@@ -51,38 +60,13 @@ public class Program
             }
         });
 
-        app.MapPost("/api/submit", HandleSubmit);
+        app.MapEntityApi<Entry>();
 
         app.MapFallbackToFile("index.html");
 
-        await app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.MigrateAsync();
+        await app.MigrateContext<ApplicationDbContext>();
 
         await app.RunAsync();
     }
 
-    private static async Task<IResult> HandleSubmit(
-            HttpContext context,
-            [FromServices] ApplicationDbContext db,
-            [FromBody] ValidatedEntry entry)
-    {
-        entry.Market = context.Request.Host.Host.EndsWith(".ie", StringComparison.InvariantCultureIgnoreCase) ? 2 : 1; // Horrible, but it works.
-
-        var validation = await MiniValidator.TryValidateAsync(entry, context.RequestServices);
-        if (!validation.IsValid)
-        {
-            return Results.ValidationProblem(validation.Errors);
-        }
-
-        try
-        {
-            await db.Entries.AddAsync(entry);
-            await db.SaveChangesAsync();
-            return Results.Created();
-        }
-        catch
-        {
-            return Results.StatusCode(StatusCodes.Status500InternalServerError);
-        }
-
-    }
 }
