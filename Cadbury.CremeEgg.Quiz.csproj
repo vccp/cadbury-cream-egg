@@ -21,17 +21,14 @@
   <ItemGroup>
     <PackageReference Include="AspNetCore.ReCaptcha" Version="1.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.0" Condition="'$(Configuration)' == 'Debug'" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" Condition="'$(Configuration)' == 'Debug'" >
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" Condition="'$(Configuration)' == 'Debug'">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"  Condition="'$(Configuration)' == 'Debug'"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     <PackageReference Include="MiniValidation" Version="0.9.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="14.0.0" Condition="'$(Configuration)' == 'Debug'"/>
-    <PackageReference Include="nswag.msbuild" Version="14.0.0" Condition="'$(Configuration)' == 'Debug'">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="NSwag.AspNetCore" Version="14.0.0" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -58,6 +55,7 @@
     </ItemGroup>
   </Target>  
   <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
-  <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run nswag.json /variables:Configuration=$(Configuration)" />
-</Target>
+    <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool restore" />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet nswag run nswag.json /variables:Configuration=$(Configuration)" />
+  </Target>
 </Project>
