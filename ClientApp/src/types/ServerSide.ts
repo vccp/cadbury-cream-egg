@@ -59,10 +59,11 @@ export class EntityBase implements IEntityBase {
     constructor(data?: IEntityBase) {
         if (data) {
             for (var property in data) {
-                if (data.hasOwnProperty(property))
+                if (data.hasOwnProperty(property) && this.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
         }
+
     }
 
     init(_data?: any) {
@@ -95,9 +96,16 @@ export class Entry extends EntityBase implements IEntry {
 
     constructor(data?: IEntry) {
         super(data);
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property) && this.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+
     }
 
-    override init(_data?: any) {
+    init(_data?: any) {
         super.init(_data);
         if (_data) {
             this.recaptchaResponse = _data["RecaptchaResponse"];
@@ -110,14 +118,14 @@ export class Entry extends EntityBase implements IEntry {
         }
     }
 
-    static override fromJS(data: any): Entry {
+    static fromJS(data: any): Entry {
         data = typeof data === 'object' ? data : {};
         let result = new Entry();
         result.init(data);
         return result;
     }
 
-    override toJSON(data?: any) {
+    toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["RecaptchaResponse"] = this.recaptchaResponse;
         data["Email"] = this.email;
