@@ -46,12 +46,12 @@ public class Program
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddTransient<IMarketIdentifier, DomainTldMarketIdentifier>();
         builder.Services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
-        builder.Services.AddOptions<List<MarketOption>>().BindConfiguration("Markets");
-        builder.Services.AddTransient<MarketOption>((x) => {
-            var allOptions = x.GetRequiredService<List<MarketOption>>();
-            var market = x.GetRequiredService<IMarketIdentifier>().GetMarket();
-            return allOptions.Single(x => x.Name == market.ToString());
-        });
+        // builder.Services.AddOptions<List<MarketOption>>().BindConfiguration("Markets");
+        // builder.Services.AddTransient<MarketOption>((x) => {
+        //     var allOptions = x.GetRequiredService<List<MarketOption>>();
+        //     var market = x.GetRequiredService<IMarketIdentifier>().GetMarket();
+        //     return allOptions.Single(x => x.Name == market.ToString());
+        // });
 
 #if DEBUG
         builder.Services.AddEndpointsApiExplorer();
