@@ -45,6 +45,7 @@ public class Program
         builder.Services.AddResponseCaching();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddTransient<IMarketIdentifier, DomainTldMarketIdentifier>();
+        //builder.Services.AddTransient<Market>(sp => sp.GetRequiredService<IMarketIdentifier>().GetMarket());
         builder.Services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
         // builder.Services.AddOptions<List<MarketOption>>().BindConfiguration("Markets");
         // builder.Services.AddTransient<MarketOption>((x) => {
