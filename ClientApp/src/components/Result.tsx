@@ -10,14 +10,16 @@ import JourneyTracker from "../assets/images/JourneyTracker.svg?react";
 import { Autoplay, Pagination } from 'swiper/modules';
 import Share from './Share';
 import Final from './Final';
-import { useLocation } from 'react-router-dom';
 import { slideData } from '../data/slideData';
+import { getLocalStorageValue } from '../utils/useLocalStorage';
+import { MatrixState } from '../types/resultTypes';
 
 const Result = () => {
-    const location = useLocation();
     const [activeIndex, setActiveIndex] = useState(0);
-    const resultData = location.state;
-
+    const resultData = getLocalStorageValue<MatrixState>("matrixState", {
+        code: "",
+        matrixResults: [],
+    });
     const handleSlideChange = (swiper: any) => {
         const index = swiper.activeIndex;
 
@@ -68,7 +70,7 @@ const Result = () => {
                         '--swiper-pagination-bullet-inactive-color': slideData[activeIndex]?.color || '#FFDD00',
                     } as React.CSSProperties}>
                     <div className="swiper-pagination-custom" />
-                    {resultData.matrixResults.map((slide: string[], index: number) => (
+                    {resultData.matrixResults.map((slide: string, index: number) => (
                         <SwiperSlide
                             key={index + 1}
                             className={`fixedHeight slide_${index + 1}`}

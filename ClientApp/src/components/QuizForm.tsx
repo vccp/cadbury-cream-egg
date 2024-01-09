@@ -1,18 +1,36 @@
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { QuizFormData } from '../types/formTypes';
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
 import BGQ3DotsBottomDesktop from "../assets/images/BGQ3DotsBottomDesktop.svg?react";
-// import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
+import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
 import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
+import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 // import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
+import { setLocalStorageValue } from '../utils/useLocalStorage';
+// import { MatrixState } from '../types/resultTypes';
+// import { getLocalStorageValue } from '../utils/useLocalStorage';
+
+gsap.registerPlugin(ScrollToPlugin)
+
+const timeline = gsap.timeline({
+    paused: true
+});
 
 const QuizForm = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const resultData = location.state;
+    const tl = useRef(timeline);
     const recaptcha = useRef<ReCAPTCHA | null>(null);
+    const app = useRef<HTMLDivElement>(null);
+    const eggShapeBgRef = useRef<HTMLDivElement | null>(null);
+    const creamLogoRef = useRef<HTMLDivElement | null>(null);
+    const mainHeadingRef = useRef<HTMLDivElement | null>(null);
+    const secondaryHeadingRef = useRef<HTMLDivElement | null>(null);
+    const formWrapperRef = useRef<HTMLDivElement | null>(null);
+
     const [formData, setQuizFormData] = useState<QuizFormData>({
         firstName: '',
         surname: '',
@@ -21,6 +39,36 @@ const QuizForm = () => {
     });
 
     const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [timeline]);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            tl.current
+                .to(eggShapeBgRef.current, { bottom: 0, duration: 2, ease: 'power2.inOut' })
+                .to(window, { duration: 0.1, scrollTo: 0 })
+                .fromTo(mainHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut' })
+                .fromTo(secondaryHeadingRef.current, { opacity: 0, top: "30%", duration: 0.8 }, { opacity: 1, top: 0, duration: 1, ease: 'power2.inOut' })
+                .from(creamLogoRef.current, { opacity: 0, scale: 0.1, duration: 0.6, ease: 'power2.inOut' })
+                .from(formWrapperRef.current, { opacity: 0, scale: 0.1, top: "50%", duration: 0.4, ease: 'power2.inOut' });
+
+
+            tl.current
+                .from('.quiz-top-left_bg svg', { opacity: 0, x: '-120%', rotation: -20, duration: 1, ease: "power2.inOut" }, 1.5)
+                .from('.quiz-bottom_bg svg', { opacity: 0, y: '50%', rotation: -20, duration: 1, ease: "power2.inOut" }, 1.5);
+
+            tl.current
+                .addLabel("openForm")
+                .to(creamLogoRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openForm')
+                .to(formWrapperRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openForm');
+
+        }, app.current as Element | undefined);
+
+        tl.current.restart();
+        return () => ctx.revert();
+    }, []);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -60,30 +108,35 @@ const QuizForm = () => {
         e.preventDefault();
         // const captchaValue = recaptcha.current?.getValue();
         if (!validateForm()) {
-           // alert('Form contains validation errors. Please check.');
-        // } else if (!captchaValue) {
-        //     alert("Please verify the reCAPTCHA!");
+            alert('Form contains validation errors. Please check.');
+            // } else if (!captchaValue) {
+            //     alert("Please verify the reCAPTCHA!");
         } else {
-            navigate("/result", { state: { code: resultData.combinedCode, matrixResults: resultData.matrixResults } });
+            setLocalStorageValue("answers", []);
+            navigate("/result");
         }
     };
-console.log(import.meta.env.VITE_APP_SITE_KEY);
+
     return (
         <div className='quizForm' >
-            <div className='quiz-main'>
-                <div className="quiz-main__bg"></div>
+            <div className='quiz-main egg-shape-bg_parent' ref={app}>
+                <div ref={eggShapeBgRef} className="egg-shape__bg"></div>
                 <div className="quiz-bottom_bg">
-                    <BGQ3DotsBottomDesktop />
+                    <BGQ3DotsBottomDesktop className='desktop' />
+                    <BGQ3DotsBottomMobile className='mobile' />
                 </div>
                 <div className="quiz-top-left_bg">
-                    <BGQ3DotsTopDesktop />
+                    <BGQ3DotsTopDesktop className='desktop' />
+                    <BGQ3DotsTopMobile className='mobile' />
                 </div>
                 <div className="quiz-main__items">
                     <div className="que-form-container">
-                        <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
-                        <h1 className="main-heading text-yellow">WIN YOUR DREAM PRIZE!</h1>
-                        <h2 className="secondary-heading text-white">ENTER TO WIN THE PERFECT PRIZE<br/> FOR WHO YOU REALLY ARE</h2>
-                        <div className="quiz-form-wrapper">
+                        <div ref={creamLogoRef}>
+                            <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
+                        </div>
+                        <h1 ref={mainHeadingRef} className="main-heading text-yellow">WIN WIN WIN</h1>
+                        <h2 ref={secondaryHeadingRef} className="secondary-heading text-white">ENTER TO WIN</h2>
+                        <div ref={formWrapperRef} className="quiz-form-wrapper">
                             <form onSubmit={handleSubmit}>
                                 <div className='formGroup'>
                                     <label htmlFor="firstName">FIRST NAME</label>
@@ -152,7 +205,7 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                             id='checkbox1'
                                             name='checkbox1'
                                         />
-                                        <label htmlFor='checkbox1'>Tick for the chance to win a prize</label>
+                                        <label htmlFor='checkbox1'>T&Cs/privacy for competition (TBC on actual copy)</label>
                                     </div>
                                     <h4 className="text-white keepUpToDate">KEEP UP TO DATE</h4>
                                     <div className='checkbox'>
@@ -172,8 +225,13 @@ console.log(import.meta.env.VITE_APP_SITE_KEY);
                                         <label htmlFor='checkbox3'>Opt in for marketing comms (tick box)</label>
                                     </div>
                                 </div>
-                                <ReCAPTCHA ref={recaptcha} sitekey="6Lf2ITYpAAAAAJzYhRbatwZikff-hOk_v-eij2MP" />
+                                <div className='formGroup'>
+                                    <ReCAPTCHA ref={recaptcha} sitekey="6Lf2ITYpAAAAAJzYhRbatwZikff-hOk_v-eij2MP" />
+                                </div>
                                 <button type="submit" className='btn primary'>SUBMIT</button>
+                                <div className="linkWrapper">
+                                    <a className='link text-center text-yellow' href={'/question/1'}>Back to my answers</a>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -192,3 +192,19 @@ nav {
 .o-h{
     overflow: hidden;
 }
+
+.egg-shape-bg_parent{
+    position: relative;
+    overflow: hidden;
+}
+.egg-shape__bg {
+    position: absolute;
+    bottom: -150%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: $purple;
+    transition: background-color 400ms;
+}

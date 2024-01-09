@@ -26,6 +26,7 @@ import BGQ5FullWaveMobile from "../assets/images/BGQ5FullWaveMobile.svg?react";
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { Answer, QuizItem, QuizOption, QuizResponse } from '../types/quizTypes';
+import useLocalStorage, { setLocalStorageValue } from '../utils/useLocalStorage';
 // import { useNavigate } from 'react-router-dom';
 // import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
@@ -54,18 +55,35 @@ const Question = () => {
     const questionImageRef = useRef<HTMLDivElement | null>(null);
     const quizMainAnsRef = useRef<HTMLDivElement | null>(null);
     const nextBtnRef = useRef<HTMLButtonElement | null>(null)
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [answers, setAnswers] = useState<Answer[]>([]);
+    const [currentQuestion, setCurrentQuestion] = useState(queId ? (parseInt(queId, 10) - 1) : 0);
+    const [answers, setAnswers] = useLocalStorage<Answer[]>("answers", []);
     const [error, setError] = useState<string | null>(null);
 
+
     useEffect(() => {
+        setCurrentQuestion(queId ? (parseInt(queId, 10) - 1) : 0)
+        if(queId === "1"){
+            setAnswers([]);
+        } else if(answers.length === 0){
+            navigate(`/question/1`);
+        }
         window.scrollTo(0, 0);
-      }, [queId]);
+    }, [queId]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('../quiz.json');
+                const hostname = window.location.hostname;
+                const tld = hostname.split('.').pop();
+
+                let jsonPath = '../quiz.json';
+                if (tld === 'com') {
+                    jsonPath = '../quiz_com.json'
+                } else if (tld === 'ir') {
+                    jsonPath = '../quiz_ir.json';
+                }
+
+                const response = await fetch(jsonPath);
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch JSON: ${response.statusText}`);
@@ -150,7 +168,7 @@ const Question = () => {
             tl.current
                 .to(quizMainAnsRef.current, { top: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' }, 'openQuiz');
         }, app.current as Element | undefined);
-        
+
         tl.current.restart();
         return () => ctx.revert();
     }, [queId]);
@@ -184,11 +202,13 @@ const Question = () => {
                 }
             ]);
         }
-        window.scrollTo({ 
+
+        window.scrollTo({
             top: document.body.scrollHeight,
             behavior: 'smooth'
         });
-        };
+        // if(nextBtnRef.current) nextBtnRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }) 
+    };
 
     const handleNext = () => {
         if (queId) {
@@ -206,10 +226,12 @@ const Question = () => {
                     const matrixResults = [
                         `${(answerForFirstResult.answer as QuizOption).result}.`,
                         matrix['personalityLine'],
-                         ...matrix['4xTraits'], 
-                         ...matrix['2xReccomandations']
-                        ];
-                    navigate("/form", { state: { code: combinedCode, matrixResults } });
+                        ...matrix['4xTraits'],
+                        ...matrix['2xReccomandations']
+                    ];
+                    const matrixState = { code: combinedCode, matrixResults }
+                    setLocalStorageValue("matrixState", matrixState);
+                    navigate("/form");
                 }
             }
         } else {
@@ -232,7 +254,7 @@ const Question = () => {
                             <BGQ1WavebottomMobile className='mobile' />
                         </div>
                         <div className="quiz-top-right_bg o-h h-100">
-                            <BGQ1WavetopDesktop className='desktop'/>
+                            <BGQ1WavetopDesktop className='desktop' />
                             <BGQ1WavetopMobile className='mobile' />
                         </div>
                     </>
@@ -240,11 +262,11 @@ const Question = () => {
                 {queId === "2" &&
                     <>
                         <div className="quiz-bottom-left_bg o-h h-100">
-                            <BGQ2WaveBottomDesktop className='desktop h-100'/>
+                            <BGQ2WaveBottomDesktop className='desktop h-100' />
                             <BGQ2WaveBottomMobile className='mobile h-100' />
                         </div>
                         <div className="quiz-top-right_bg o-h h-100">
-                            <BGQ2WaveTopDesktop className='desktop h-100'/>
+                            <BGQ2WaveTopDesktop className='desktop h-100' />
                             <BGQ2WaveTopMobile className='mobile h-100' />
                         </div>
                     </>
@@ -252,11 +274,11 @@ const Question = () => {
                 {queId === "3" &&
                     <>
                         <div className="quiz-bottom_bg">
-                            <BGQ3DotsBottomDesktop className='desktop'/>
+                            <BGQ3DotsBottomDesktop className='desktop' />
                             <BGQ3DotsBottomMobile className='mobile' />
                         </div>
                         <div className="quiz-top-left_bg">
-                            <BGQ3DotsTopDesktop className='desktop'/>
+                            <BGQ3DotsTopDesktop className='desktop' />
                             <BGQ3DotsTopMobile className='mobile' />
                         </div>
                     </>
@@ -264,7 +286,7 @@ const Question = () => {
                 {queId === "4" &&
                     <>
                         <div className="quiz-egg-repeat_bg">
-                            <BGQ4EggRepeatDesktop className='desktop'/>
+                            <BGQ4EggRepeatDesktop className='desktop' />
                             <BGQ4EggRepeatMobile className='mobile' />
                         </div>
                     </>
@@ -272,7 +294,7 @@ const Question = () => {
                 {queId === "5" &&
                     <>
                         <div className="quiz-full-wave_bg">
-                            <BGQ5FullWaveDesktop className='desktop'/>
+                            <BGQ5FullWaveDesktop className='desktop' />
                             <BGQ5FullWaveMobile className='mobile' />
                         </div>
                     </>
@@ -323,7 +345,7 @@ const Question = () => {
                                 </div>
                             }
 
-                            <button ref={nextBtnRef} className='btn primary' onClick={handleNext}                                style={answers.some((a) => a.questionId === currentQuestion) ? { visibility: "visible", opacity: 1 } : { visibility: "hidden", opacity: 0 }}>
+                            <button ref={nextBtnRef} className='btn primary' onClick={handleNext} style={answers.some((a) => a.questionId === currentQuestion) ? { visibility: "visible", opacity: 1 } : { visibility: "hidden", opacity: 0 }}>
                                 Next
                             </button>
                         </div>
