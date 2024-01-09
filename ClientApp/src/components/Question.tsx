@@ -73,14 +73,15 @@ const Question = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const hostname = window.location.hostname;
-                const tld = hostname.split('.').pop();
-
+                let marketOverride = new URLSearchParams(window.location.search).get('_mo');
                 let jsonPath = '../quiz.json';
-                if (tld === 'com') {
-                    jsonPath = '../quiz_com.json'
-                } else if (tld === 'ie') {
-                    jsonPath = '../quiz_ie.json';
+                if (marketOverride === null) {
+                    const hostname = window.location.hostname;
+                    marketOverride = hostname.split('.').pop();
+
+                    if (marketOverride === 'ie') {
+                        jsonPath = '../quiz_ie.json';
+                    }
                 }
 
                 const response = await fetch(jsonPath);
