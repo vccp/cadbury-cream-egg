@@ -141,8 +141,8 @@ const QuizForm = () => {
                         <div ref={creamLogoRef}>
                             <img className="cadburyCreamLogoImage" src={CadburyCremeEggLogoVectorRGB} alt="" />
                         </div>
-                        <h1 ref={mainHeadingRef} className="main-heading text-yellow">WIN YOUR DREAM PRIZE!</h1>
-                        <h2 ref={secondaryHeadingRef} className="secondary-heading text-white">ENTER TO WIN THE PERFECT PRIZE<br/> FOR WHO YOU REALLY ARE</h2>
+                        <h1 ref={mainHeadingRef} className="main-heading text-yellow">Time to find out who<br/> you really are!</h1>
+                        <h2 ref={secondaryHeadingRef} className="secondary-heading text-white">Enter your details below and you might<br/> just win the perfect prize for you!</h2>
                         <div ref={formWrapperRef} className="quiz-form-wrapper">
                             <form onSubmit={handleSubmit}>
                                 <div className='formGroup'>
@@ -212,7 +212,7 @@ const QuizForm = () => {
                                             id='checkbox1'
                                             name='checkbox1'
                                         />
-                                        <label htmlFor='checkbox1'>Tick for the chance to win a prize</label>
+                                        <label htmlFor='checkbox1'>I have read and agree to the T&Cs for prize entry</label>
                                     </div>
                                     <h4 className="text-white keepUpToDate">KEEP UP TO DATE</h4>
                                     <div className='checkbox'>
