@@ -13,7 +13,7 @@ import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from 'react-router';
 import { getLocalStorageValue, setLocalStorageValue } from '../utils/useLocalStorage';
-import { Client, ValidatedEntry } from '../server/ServerSide';
+import { Client, Entry } from '../types/ServerSide';
 import { Answer } from '../types/quizTypes';
 // import { MatrixState } from '../types/resultTypes';
 
@@ -143,8 +143,8 @@ const QuizForm = () => {
                 return (ans.answer && !Array.isArray(ans.answer) && ans.answer.id) ? ans.answer.id : ''
             }).join('');
             formData.RecaptchaResponse = captchaValue;
-            const validatedEntry: ValidatedEntry = ValidatedEntry.fromJS(formData);
-            const response = await new Client(baseUrl).postApiSubmit(validatedEntry, signal);
+            const validatedEntry: Entry = Entry.fromJS(formData);
+            const response = await new Client(baseUrl).postApiEntry(validatedEntry, signal);
             if (response.status == 200) {
                 console.log("success");
                 setLocalStorageValue("answers", []);

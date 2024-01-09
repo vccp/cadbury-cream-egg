@@ -4,12 +4,9 @@
 // </auto-generated>
 //----------------------
 
-import { IEntry, IValidatedEntry } from "../types/ServerSideTypes";
-
 /* tslint:disable */
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
-
 
 export class Client {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
@@ -21,8 +18,8 @@ export class Client {
         this.baseUrl = baseUrl ?? "";
     }
 
-    postApiSubmit(entry: ValidatedEntry, signal?: AbortSignal): Promise<SwaggerResponse<void>> {
-        let url_ = this.baseUrl + "/api/submit";
+    postApiEntry(entry?: Entry | undefined, signal?: AbortSignal): Promise<SwaggerResponse<void>> {
+        let url_ = this.baseUrl + "/api/Entry";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(entry);
@@ -37,11 +34,11 @@ export class Client {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processPostApiSubmit(_response);
+            return this.processPostApiEntry(_response);
         });
     }
 
-    protected processPostApiSubmit(response: Response): Promise<SwaggerResponse<void>> {
+    protected processPostApiEntry(response: Response): Promise<SwaggerResponse<void>> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -57,16 +54,9 @@ export class Client {
     }
 }
 
-export class Entry implements IEntry {
-    recaptchaResponse!: string;
-    email!: string;
-    firstName!: string;
-    lastName!: string;
-    answers!: string;
-    termsAndConditions!: boolean;
-    optIn?: boolean;
+export class EntityBase implements IEntityBase {
 
-    constructor(data?: IEntry) {
+    constructor(data?: IEntityBase) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property) && this.hasOwnProperty(property))
@@ -77,6 +67,46 @@ export class Entry implements IEntry {
     }
 
     init(_data?: any) {
+    }
+
+    static fromJS(data: any): EntityBase {
+        data = typeof data === 'object' ? data : {};
+        let result = new EntityBase();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        return data;
+    }
+}
+
+export interface IEntityBase {
+}
+
+export class Entry extends EntityBase implements IEntry {
+    recaptchaResponse!: string;
+    email!: string;
+    firstName!: string;
+    lastName!: string;
+    answers!: string;
+    termsAndConditions!: boolean;
+    optIn!: boolean;
+
+    constructor(data?: IEntry) {
+        super(data);
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property) && this.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+
+    }
+
+    init(_data?: any) {
+        super.init(_data);
         if (_data) {
             this.recaptchaResponse = _data["RecaptchaResponse"];
             this.email = _data["Email"];
@@ -104,39 +134,19 @@ export class Entry implements IEntry {
         data["Answers"] = this.answers;
         data["TermsAndConditions"] = this.termsAndConditions;
         data["OptIn"] = this.optIn;
+        super.toJSON(data);
         return data;
     }
 }
 
-export class ValidatedEntry extends Entry implements IValidatedEntry {
-
-    constructor(data?: IValidatedEntry) {
-        super(data);
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property) && this.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-    }
-
-    static fromJS(data: any): ValidatedEntry {
-        data = typeof data === 'object' ? data : {};
-        let result = new ValidatedEntry();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        super.toJSON(data);
-        return data;
-    }
+export interface IEntry extends IEntityBase {
+    recaptchaResponse: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    answers: string;
+    termsAndConditions: boolean;
+    optIn: boolean;
 }
 
 export class SwaggerResponse<TResult> {

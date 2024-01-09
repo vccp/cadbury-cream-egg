@@ -1,8 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Cadbury.CremeEgg.Quiz.Data;
 using AspNetCore.ReCaptcha;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace Cadbury.CremeEgg.Quiz;
+
+// public class MarketOption {
+//     public string Name { get; set; }
+//     public List<Uri> Domains { get; set; }
+//     public List<PhaseOption> Phases { get; set; }
+//     public Uri RedirectionUri { get; set; }
+// }
+
+// public class PhaseOption {
+//     public string Name { get; set; }
+//     public DateTimeOffset EndDate { get; set; }
+
+//     public bool RedirectAllRequests { get; set; }
+
+// }
 public class Program
 {
     public static async Task Main(string[] args)
@@ -28,6 +46,12 @@ public class Program
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddTransient<IMarketIdentifier, DomainTldMarketIdentifier>();
         builder.Services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
+        builder.Services.AddOptions<List<MarketOption>>().BindConfiguration("Markets");
+        builder.Services.AddTransient<MarketOption>((x) => {
+            var allOptions = x.GetRequiredService<List<MarketOption>>();
+            var market = x.GetRequiredService<IMarketIdentifier>().GetMarket();
+            return allOptions.Single(x => x.Name == market.ToString());
+        });
 
 #if DEBUG
         builder.Services.AddEndpointsApiExplorer();
@@ -60,6 +84,10 @@ public class Program
             }
         });
 
+        var live = DateTimeOffset.Parse("2023-02-10");
+
+        //app.Run(CheckPhase);
+
         app.MapEntityApi<Entry>();
 
         app.MapFallbackToFile("index.html");
@@ -69,4 +97,14 @@ public class Program
         await app.RunAsync();
     }
 
+    // private static async Task CheckPhase(HttpContext context)
+    // {
+    //     var options = context.RequestServices.GetRequiredService<MarketOption>();
+
+    //     var activePhase = options.Phases.Where(x => x.EndDate < DateTimeOffset.UtcNow).OrderBy(x => x.EndDate).First();
+
+    //     if (activePhase.RedirectAllRequests) {
+    //         context.Response.Redirect(options.RedirectionUri.ToString(), false, false);
+    //     }
+    // }
 }
