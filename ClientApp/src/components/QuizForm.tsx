@@ -3,10 +3,12 @@ import { gsap } from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { QuizFormData } from '../types/formTypes';
 import CadburyCremeEggLogoVectorRGB from '../assets/images/CadburyCremeEggLogoVectorRGB.webp'
+
 import BGQ3DotsBottomDesktop from "../assets/images/BGQ3DotsBottomDesktop.svg?react";
 import BGQ3DotsBottomMobile from "../assets/images/BGQ3DotsBottomMobile.svg?react";
 import BGQ3DotsTopDesktop from "../assets/images/BGQ3DotsTopDesktop.svg?react";
 import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
+
 // import BGQ3DotsTopMobile from "../assets/images/BGQ3DotsTopMobile.svg?react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from 'react-router';
@@ -23,6 +25,11 @@ const timeline = gsap.timeline({
 const QuizForm = () => {
     const navigate = useNavigate();
     const tl = useRef(timeline);
+    // const location = useLocation();
+    // const resultData = getLocalStorageValue<MatrixState>("matrixState", {
+    //     code: "",
+    //     matrixResults: [],
+    // });
     const recaptcha = useRef<ReCAPTCHA | null>(null);
     const app = useRef<HTMLDivElement>(null);
     const eggShapeBgRef = useRef<HTMLDivElement | null>(null);
