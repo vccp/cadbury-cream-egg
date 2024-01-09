@@ -1,0 +1,344 @@
+{
+    "quizData": [
+        {
+            "id": 1,
+            "question": "Do you like to enjoy your<br/> creme egg in public? IE TEST",
+            "options": [
+                {
+                    "code": "E",
+                    "option": "Yes."
+                },
+                {
+                    "code": "I",
+                    "option": "Absolutely not, what is wrong with you? That's 100% anti social behaviour. Ew. Awkward. Never."
+                }
+            ],
+            "layout": "three_column",
+            "multi_select": false
+        },
+        {
+            "id": 2,
+            "question": "What do you see?",
+            "options": [
+                {
+                    "code": "N",
+                    "option": "1. A man riding a horse. He’s eating a creme egg."
+                },
+                {
+                    "code": "N",
+                    "option": "2. A woman holding a creme egg. She’s crying. Tears of joy."
+                },
+                {
+                    "code": "S",
+                    "option": "3. HUH????"
+                }
+            ],
+            "layout": "single_column",
+            "image": "../assets/images/q2.jpg",
+            "multi_select": false
+        },
+        {
+            "id": 3,
+            "question": "How do you eat yours?",
+            "options": [
+                {
+                    "option": "All one in go",
+                    "result": "You eat yours all in one go"
+                },
+                {
+                    "option": "In two mouthfuls",
+                    "result": "You eat yours in two mouthfuls"
+                },
+                {
+                    "option": "With a teaspoon",
+                    "result": "You eat yours with a teaspoon"
+                },
+                {
+                    "option": "Scoop the goo out with your finger",
+                    "result": "You scoop the goo out with your finger"
+                },
+                {
+                    "option": "Suck out the goo like an oyster",
+                    "result": "You suck out the goo like an oyster"
+                },
+                {
+                    "option": "Save half for later",
+                    "result": "You save half for later"
+                },
+                {
+                    "option": "In small nibbles",
+                    "result": "You eat yours in small nibbles"
+                },
+                {
+                    "option": "Melted on toast",
+                    "result": "You eat yours melted on toast"
+                }
+            ],
+            "layout": "two_column",
+            "multi_select": false
+        },
+        {
+            "id": 4,
+            "question": "THERE’S ONE CREME EGG LEFT IN THE SHOP. <br/>YOU AND YOUR FRIEND REALLY WANT IT. <br/>WHAT DO YOU DO?",
+            "options": [
+                {
+                    "code": "T",
+                    "option": "Toss a coin for it."
+                },
+                {
+                    "code": "F",
+                    "option": "Give it to your friend.<br/> You know how much<br/> they want it."
+                },
+                {
+                    "code": "T",
+                    "option": "Have it yourself. You deserve it."
+                }
+            ],
+            "layout": "three_column",
+            "multi_select": false
+        },
+        {
+            "id": 5,
+            "question": "How do you feel about this?",
+            "options": [
+                {
+                    "code": "J",
+                    "option": "1. What on earth are they doing?"
+                },
+                {
+                    "code": "P",
+                    "option": "2. Each to their own :)"
+                }
+            ],
+            "layout": "single_column",
+            "image": "../assets/images/q5.jpg",
+            "multi_select": false
+        }
+    ],
+    "matrix": {
+        "ISTP": {
+            "personalityLine": "YOU’RE THE MASTER",
+            "type": "Virtuoso",
+            "4xTraits": [
+                "YOU SINGLE-HANDEDLY BUILT A FLAT PACK BED THAT WAS A TWO PERSON JOB",
+                "YOU ALWAYS GUESS THE FINAL SCORE",
+                "YOU DOUBLE-CHECK THE EXITS WHEN GOING SOMEWHERE NEW",
+                "YOU ONLY BREAK A SWEAT IN A SAUNA"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO EPIC FILM SCORES WRITTEN FOR THE MAIN CHARACTER",
+                "YOU SHOULD VISIT OSAKA AND RETRAIN AS A SUSHI CHEF"
+            ]
+        },
+        "ESFJ": {
+            "personalityLine": "YOU’RE A GO GETTER",
+            "type": "Consul",
+            "4xTraits": [
+                "YOU MAKE SMALL TALK IN LIFTS",
+                "YOU FOUND YOUR PARTNER ON TUBE CRUSH",
+                "YOU BEFRIEND YOUR CAB DRIVER EVERY TIME",
+                "YOU SAY YES TO THINGS AND DON’T LIVE TO REGRET IT"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD BE A REALITY TV STAR",
+                "YOU SHOULD GO TO YOUR HIGH SCHOOL REUNION"
+            ]
+        },
+        "ENTP": {
+            "personalityLine": "YOU’RE A CONNOISSEUR OF LIFE",
+            "type": "Debater",
+            "4xTraits": [
+                "YOU CAN TASTE FLAVORS LIKE VANILLA POD AND LEATHER IN WINE",
+                "YOUR MOST LISTENED TO ARTIST IS PODCASTS",
+                "YOU THINK YOU WOULD MAKE AN EXCELLENT LAWYER",
+                "YOU THINK SONG COVERS ARE BLASPHEMOUS"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD GO TO YOUR LOCAL PUB QUIZ AT YOUR RESERVED TABLE 3 HOURS EARLY",
+                "YOU SHOULD GO ON A CAVIAR TASTING TOUR IN MONACO (BOOKMARK PINTEREST BOARDS FOR MINK FUR HATS)"
+            ]
+        },
+        "ENFJ": {
+            "personalityLine": "YOU’RE KIND OF A BIG DEAL",
+            "type": "Protagonist",
+            "4xTraits": [
+                "YOU CONFIDENTLY MAKE UP WORDS IN SCRABBLE",
+                "YOU TURN UP AT YOUR FRIENDS’ HOUSES UNANNOUNCED",
+                "YOU'RE PRETTY SURE YOU’D JUMP STRAIGHT TO BLACK BELT",
+                "YOU THRIVE ON TEAM BUILDING AWAY DAYS"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD BOOKMARK PINTEREST BOARDS FOR #SHEDQUARTERS TRANSFORMATIONS",
+                "YOU SHOULD RETRAIN AS A VENTRILOQUIST WITH A PUPPET OF YOURSELF"
+            ]
+        },
+        "INTP": {
+            "personalityLine": "YOU LIKE SOLUTIONS",
+            "type": "Logician",
+            "4xTraits": [
+                "YOU SAY STUFF ‘HOW IT IS",
+                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO",
+                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE",
+                "YOU COULD SOLVE A RUBIK’S CUBE."
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO SCHOOL ASSEMBLY ANTHEMS",
+                "YOU SHOULD GO ON A LOCOMOTIVE TRAIN TOUR OF BRITAIN’S GREATEST RAILWAY STATIONS"
+            ]
+        },
+        "ESFP": {
+            "personalityLine": "YOU’RE A TRUE ORIGINAL",
+            "type": "Entertainer",
+            "4xTraits": [
+                "PEOPLE OFTEN SAY YOU SHOULD DO STAND UP",
+                "YOU DON’T JOIN THE CONGA LINE, YOU ARE THE CONGA LINE",
+                "YOU SING BOTH PARTS AT KARAOKE",
+                "YOU HAVE AN AMAZING CELEBRITY ANECDOTE"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD BE AN ONLINE DATING GHOSTWRITER",
+                "YOU SHOULD LEARN KOREAN SIGN LANGUAGE"
+            ]
+        },
+        "ISFP": {
+            "personalityLine": "YOU’RE REALLY OUT THERE",
+            "type": "Adventurer",
+            "4xTraits": [
+                "YOU GO ON HOLIDAY BY YOURSELF",
+                "YOU HAVE A STRONG URGE TO PRESS BUTTONS TO ‘SEE WHAT THEY DO’",
+                "YOU KNOW YOUR HAIRDRESSER’S STAR SIGN",
+                "YOU LIKE POEMS THAT DON’T RHYME"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD BE A POTTER THAT SPECIALISES IN FOOT CASTING",
+                "YOU SHOULD BOOKMARK PINTEREST BOARDS FOR BABIES THAT LOOK LIKE MIDDLE-AGED MEN"
+            ]
+        },
+        "INFJ": {
+            "personalityLine": "YOU’RE A DREAMER",
+            "type": "Advocate",
+            "4xTraits": [
+                "YOU OWN A GUITAR YOU NEVER PLAY",
+                "YOU WOULD NEVER SHORT CHANGE AN HONESTY BOX",
+                "YOU HAVE A LIST OF TOP 5 REED DIFFUSERS",
+                "YOU CAN TURN A TOWEL INTO FOUR DIFFERENT ANIMALS"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO A WHALE NOISES PLAYLIST",
+                "YOU SHOULD DO TALKS ABOUT COLONIZING VENUS"
+            ]
+        },
+        "ISFJ": {
+            "personalityLine": "YOU’RE CONSCIENTIOUS",
+            "type": "Defender",
+            "4xTraits": [
+                "YOU KNOW THE DIFFERENCE BETWEEN SATIN AND EGGSHELL",
+                "YOU ARE THE FIRE WARDEN AT WORK",
+                "YOU SAID ‘THANK YOU’ TO A DECLARATION OF LOVE",
+                "YOU ALWAYS TELL THE HAIRDRESSER YOU LOVE IT"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD VOLUNTEER FOR AN ANT CONSERVATION CHARITY",
+                "YOU SHOULD INVEST IN A JAPANESE TOILET FOR THE GUESTROOM"
+            ]
+        },
+        "INFP": {
+            "personalityLine": "YOU’RE REAL DEEP",
+            "type": "Mediator",
+            "4xTraits": [
+                "YOU WRITE EVERYTHING YOU THINK OF IN YOUR NOTES APP",
+                "YOU KEEP ALL BIRTHDAY CARDS FOR SENTIMENTAL VALUE",
+                "YOU STILL THINK ABOUT THAT TIME YOU CALLED YOUR TEACHER ‘MUM’",
+                "WHEN YOU ASK ‘HOW ARE YOU?’ YOU GENUINELY WANT TO KNOW"
+            ],
+            "2xReccomandations": [
+                "YOU WOULD ENJOY A WILD MUSHROOM FORAGING",
+                "YOU SHOULD DO A TEN DAY SILENT RETREAT IN BHUTAN"
+            ]
+        },
+        "INTJ": {
+            "personalityLine": "YOU GET STUFF DONE",
+            "type": "Architect",
+            "4xTraits": [
+                "YOU SEE HOLIDAYS AS A TICK BOX EXERCISE",
+                "YOU NEVER GIVE ANYTHING 10/10",
+                "YOU HAPPILY TAKE THE FIRST PENALTY KICK",
+                "YOU BUY CLOTHES FROM THE HARDWARE STORE"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO QUIZ SHOW THEME TUNES",
+                "YOU SHOULD SCALE THE SHARD"
+            ]
+        },
+        "ENTJ": {
+            "personalityLine": "YOU’RE A BIT PUNCHY",
+            "type": "Commander",
+            "4xTraits": [
+                "YOU DEMAND ANSWERS, YESTERDAY",
+                "YOUR AVERAGE PHONE CALL DURATION IS 17 SECONDS",
+                "YOU HATE HOW LONG IT TAKES FOR THE BOWLING MACHINE TO RETURN YOUR BALL",
+                "YOU CAN SUCCESSFULLY TALK YOURSELF OUT OF A PARKING TICKET"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO ANYTHING AS LONG AS IT’S AT 2X SPEED",
+                "YOU SHOULD OWN YOUR OWN PYRAMID SCHEME"
+            ]
+        },
+        "ISTJ": {
+            "personalityLine": "YOU LIKE SOLUTIONS",
+            "type": "Logistician",
+            "4xTraits": [
+                "YOU SAY STUFF ‘HOW IT IS’",
+                "YOU NEVER ASK FOR DIRECTIONS, BECAUSE YOU DON’T NEED TO",
+                "YOU ARRIVE FIVE MINUTES EARLY, EVEN WHEN RUNNING LATE",
+                "YOU COULD SOLVE A RUBIK’S CUBE"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO WHITE NOISE AND SCREAMO METAL MUSIC",
+                "YOU SHOULD BECOME AN ESCAPE ROOM CONSULTANT"
+            ]
+        },
+        "ENFP": {
+            "personalityLine": "YOU’RE A FREE SPIRIT",
+            "type": "Campaigner",
+            "4xTraits": [
+                "WHEN PEOPLE ASK IF YOU TAKE SUGAR, YOU SAY ‘NO THANKS, I’M SWEET ENOUGH’",
+                "YOU KNOW WHAT PEOPLE WOULD LIKE FOR THEIR BIRTHDAY",
+                "YOU SAY YOU’RE ON YOUR WAY AS YOU’RE GETTING IN THE SHOWER",
+                "YOU SIGN UP FOR MARATHONS AND BACK OUT AT THE LAST MINUTE"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD LISTEN TO HIMALAYAN THROAT SINGING",
+                "YOU SHOULD JOIN AN ECSTATIC DANCE CLASS"
+            ]
+        },
+        "ESTJ": {
+            "personalityLine": "YOU’RE METHODICAL",
+            "type": "Executive",
+            "4xTraits": [
+                "YOU KNOW HOW TO POLISH A SHOE",
+                "YOU OWN A PRINTER THAT AUTOMATICALLY REORDERS INK",
+                "BEFORE EVERY TRIP YOU MAKE A HOLIDAY FOLDER",
+                "YOU IRON YOUR PYJAMAS"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD START A GROUP CHAT FOR YOUR ROAD",
+                "YOU SHOULD LISTEN TO YOUR FAVOURITE BAND’S BACK CATALOGUE IN ALPHABETICAL ORDER"
+            ]
+        },
+        "ESTP": {
+            "personalityLine": "YOU THRIVE IN CHAOS",
+            "type": "Entrepreneur",
+            "4xTraits": [
+                "YOU'VE BEEN ON ‘HOLIDAY’ TO A JUNGLE",
+                "YOU'VE PROVEN YOUR OLD TEACHER WRONG. TWICE",
+                "YOU IDENTIFY WITH THE LONE WOLF HERO IN ACTION MOVIES",
+                "YOU WRITE IN FELT TIP"
+            ],
+            "2xReccomandations": [
+                "YOU SHOULD BE A ROADIE FOR A RANDOM BAND’S WORLD TOUR",
+                "YOU SHOULD GO WILD CAMPING NEAR A BEAR CAVE IN CANADA"
+            ]
+        }
+    }
+}
