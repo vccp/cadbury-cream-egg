@@ -24,11 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build
-        run: dotnet build -c Release --runtime win-x64
-
       - name: Publish
-        run: dotnet publish --no-build -c Release -o dist --runtime win-x64
+        run: dotnet publish -c Release -o dist --runtime win-x64
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
