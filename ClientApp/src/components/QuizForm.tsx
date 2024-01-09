@@ -141,7 +141,8 @@ const QuizForm = () => {
             const formData: QuizFormData = quizFormData;
             formData.Answers = answers.map((ans) => {
                 return (ans.answer && !Array.isArray(ans.answer) && ans.answer.id) ? ans.answer.id : ''
-            }).join('')
+            }).join('');
+            formData.RecaptchaResponse = captchaValue;
             const validatedEntry: ValidatedEntry = ValidatedEntry.fromJS(formData);
             const response = await new Client(baseUrl).postApiSubmit(validatedEntry, signal);
             if (response.status == 200) {
@@ -153,6 +154,14 @@ const QuizForm = () => {
             }
         }
     };
+
+    const onRecaptchaChange = (value: any) => {
+        console.log("Captcha value:", value);
+        // setQuizFormData((prevData) => ({
+        //     ...prevData,
+        //     RecaptchaResponse: value,
+        // }));
+      }
 
     return (
         <div className='quizForm' >
@@ -252,8 +261,7 @@ const QuizForm = () => {
                                             type='checkbox'
                                             id='checkbox2'
                                             name='checkbox2'
-                                            checked={quizFormData.OptIn}
-                                            onChange={handleInputChange}
+                                           
                                         />
                                         <label htmlFor='checkbox2'>18+ tick box</label>
                                     </div>
@@ -262,12 +270,17 @@ const QuizForm = () => {
                                             type='checkbox'
                                             id='optIn'
                                             name='OptIn'
+                                            checked={quizFormData.OptIn}
+                                            onChange={handleInputChange}
                                         />
                                         <label htmlFor='optIn'>Opt in for marketing comms (tick box)</label>
                                     </div>
                                 </div>
                                 <div className='formGroup'>
-                                    <ReCAPTCHA ref={recaptcha} sitekey="6Lf2ITYpAAAAAJzYhRbatwZikff-hOk_v-eij2MP" />
+                                    <ReCAPTCHA 
+                                    ref={recaptcha} 
+                                    onChange={onRecaptchaChange}
+                                    sitekey="6Lf2ITYpAAAAAJzYhRbatwZikff-hOk_v-eij2MP" />
                                 </div>
                                 <button type="submit" className='btn primary'>SUBMIT</button>
                                 <div className="linkWrapper">
