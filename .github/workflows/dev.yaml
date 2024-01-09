@@ -24,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build
+        run: dotnet build -c Debug --runtime win-x64
+
       - name: Publish
         run: dotnet publish -c Debug -o dist --runtime win-x64
 
