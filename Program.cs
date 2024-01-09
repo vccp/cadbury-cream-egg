@@ -3,20 +3,6 @@ using Cadbury.CremeEgg.Quiz.Data;
 using AspNetCore.ReCaptcha;
 
 namespace Cadbury.CremeEgg.Quiz;
-
-public static class CustomEnvironments
-{
-    public static readonly string Local = "Local";
-}
-public static class WorkingEnvironmentExtensions
-{
-    public static bool IsLocal(this IHostEnvironment hostEnvironment)
-    {
-        ArgumentNullException.ThrowIfNull(hostEnvironment);
-
-        return hostEnvironment.IsEnvironment(CustomEnvironments.Local);
-    }
-}
 public class Program
 {
     public static async Task Main(string[] args)

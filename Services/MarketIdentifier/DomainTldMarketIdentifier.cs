@@ -3,12 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cadbury.CremeEgg.Quiz;
 
-
-public interface IMarketIdentifier
-{
-    public Market GetMarket();
-}
-
 public class DomainTldMarketIdentifier(IHttpContextAccessor context) : IMarketIdentifier
 {
     public Market GetMarket()
