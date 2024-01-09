@@ -79,9 +79,9 @@ const Question = () => {
                     const hostname = window.location.hostname;
                     marketOverride = hostname.split('.').pop();
 
-                    if (marketOverride === 'ie') {
-                        jsonPath = '../quiz_ie.json';
-                    }
+                }
+                if (marketOverride === 'ie') {
+                    jsonPath = '../quiz_ie.json';
                 }
 
                 const response = await fetch(jsonPath);
