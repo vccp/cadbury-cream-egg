@@ -41,6 +41,19 @@
         }
     }
 
+    .result_2 {
+        .swiper-pagination-bullet {
+            background-color: $purple;
+        }
+
+        .st0 {
+            fill: $purple !important 
+        }
+        .swiper-pagination-bullet-active {
+         background: transparent;
+        }
+    }
+
     .result_7 {
         .st0{
             fill: $yellow !important
