@@ -79,8 +79,8 @@ const Question = () => {
                 let jsonPath = '../quiz.json';
                 if (tld === 'com') {
                     jsonPath = '../quiz_com.json'
-                } else if (tld === 'ir') {
-                    jsonPath = '../quiz_ir.json';
+                } else if (tld === 'ie') {
+                    jsonPath = '../quiz_ie.json';
                 }
 
                 const response = await fetch(jsonPath);
